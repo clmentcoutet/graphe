@@ -1,5 +1,9 @@
 import networkx as nx
 
+def find_cycles(graph: nx.Graph) -> list:
+    cycles = list(nx.simple_cycles(graph))
+    return cycles
+
 
 if __name__ == "__main__":
     ##example:
@@ -17,4 +21,4 @@ if __name__ == "__main__":
     end = '4'
     G = nx.DiGraph(graph)
 
-    print(list(nx.simple_cycles(G)))
+    print(f"cycles: {find_cycles(G)}")
