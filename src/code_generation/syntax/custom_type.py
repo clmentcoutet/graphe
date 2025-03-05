@@ -13,11 +13,14 @@ class NodeType(Enum):
     RETURN_STATEMENT = 'ReturnStatement'
     EXPRESSION = 'Expression'
     IDENTIFIER_EXPRESSION = 'IdentifierExpression'
+    BASE_TYPE_EXPRESSION = 'BaseTypeExpression'
     LITERAL = 'Literal'
     BINARY_OPERATION = 'BinaryOperation'
     UNARY_OPERATION = 'UnaryOperation'
     CALL_EXPRESSION = 'CallExpression'
     DECORATOR = 'Decorator'
+    CLASS_DEF = 'ClassDefinition'
+    ATTRIBUTE_DEF = 'AttributeDefinition'
 
 
 class Operator(Enum):
@@ -37,3 +40,8 @@ class UnaryOperator(Operator):
     NEG = '-'
     NOT = 'not'
 
+
+class Modifiers(Enum):
+    PUBLIC = 'public'
+    PRIVATE = 'private'
+    PROTECTED = 'protected'

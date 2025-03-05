@@ -1,13 +1,10 @@
-@staticmethod
-def factorial(n):
-    if n > 0:
-        return n * factorial(n - 1)
-    else:
-        return 1
+class MathUtils:
+    count : int = 0
+    name : str = 2
+    base : int
 
-
-def is_positive(x):
-    if x > 0:
-        return True
-    else:
-        return not-x > 0
+    def factorial(self, n) -> int:
+        if n > 0:
+            return n * self.factorial(n - 1)
+        else:
+            return 1

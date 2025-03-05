@@ -1,5 +1,13 @@
-function add(a, b) {
-    return a + b;
-}
+class MathUtils {
+    let count : Number = 0
+    let name : string = 2
+    let base : Number
 
-x = 2 * 3;
+    function factorial(self, n) : Number {
+        if (n > 0) {
+            return n * self.factorial(n - 1)
+        }
+        else {
+            return 1
+        }
+    }

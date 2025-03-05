@@ -1,9 +1,7 @@
-from abc import ABC, abstractmethod, ABCMeta
+from abc import ABC, abstractmethod
 from typing import List, Optional, Any
 
-from src.code_generation.syntax.custom_type import NodeType, BinaryOperator, UnaryOperator
-
-
+from src.code_generation.syntax.custom_type import NodeType
 
 class Node(ABC):
     TYPE_MAPPING = {
@@ -18,11 +16,14 @@ class Node(ABC):
         'ReturnStatement': NodeType.RETURN_STATEMENT,
         'Expression': NodeType.EXPRESSION,
         'IdentifierExpression': NodeType.IDENTIFIER_EXPRESSION,
+        'BaseTypeExpression': NodeType.BASE_TYPE_EXPRESSION,
         'Literal': NodeType.LITERAL,
         'BinaryOperation': NodeType.BINARY_OPERATION,
         'UnaryOperation': NodeType.UNARY_OPERATION,
         'CallExpression': NodeType.CALL_EXPRESSION,
-        'Decorator': NodeType.DECORATOR
+        'Decorator': NodeType.DECORATOR,
+        "ClassDefinition": NodeType.CLASS_DEF,
+        'AttributeDefinition': NodeType.ATTRIBUTE_DEF,
     }
 
     def get_type(self):
@@ -36,24 +37,39 @@ class Node(ABC):
 
 
 class Module(Node):
-    def __init__(self, functions: List['FunctionDefinition']):
-        self.functions = functions
+    def __init__(
+            self,
+            classes: Optional[List['ClassDefinition']] = None,
+            functions: Optional[List['FunctionDefinition']] = None,
+            attributes: Optional[List['AttributeDefinition']] = None,
+    ):
+        self.classes = classes or []
+        self.functions = functions or []
+        self.attributes = attributes or []
 
     @property
     def children(self):
-        return self.functions
-
-
-class Expression(Node, metaclass=ABCMeta):
-    pass
-
-class Statement(Node, metaclass=ABCMeta):
-    pass
+        return self.classes + self.functions + self.attributes
 
 
 class Parameter(Node):
-    def __init__(self, name: str):
+    """
+    Represents a function parameter.
+
+    Attributes:
+        name (IdentifierExpression): The parameter's name.
+        _type (IdentifierExpression): The parameter's type.'
+        default_value (Optional[Literal]): The parameter's default value.'
+    """
+    def __init__(
+            self,
+            name: 'IdentifierExpression',
+            *,
+            _type: Optional['IdentifierExpression'] = None,
+            default_value: Optional['Literal'] = None):
         self.name = name
+        self._type = _type
+        self.default_value = default_value
 
     @property
     def children(self):
@@ -70,7 +86,7 @@ class Parameters(Node):
 
 
 class Body(Node):
-    def __init__(self, statements: List[Statement]):
+    def __init__(self, statements: List['Statement']):
         self.statements = statements
 
     @property
@@ -84,104 +100,7 @@ class Decorator(Node):
         self.parameters = parameters or []
 
     @property
-    def children(self):
+    def children(self) -> List[Node]:
         return self.parameters
 
 
-class FunctionDefinition(Node):
-    def __init__(
-            self,
-            name: str,
-            parameters: Parameters,
-            body: Body,
-            decorators: Optional[List[Decorator]] = None,
-    ):
-        self.name = name
-        self.decorators = decorators or []
-        self.parameters = parameters
-        self.body = body
-
-    @property
-    def children(self):
-        return [self.parameters, self.body]
-
-
-class ExpressionStatement(Statement):
-    def __init__(self, expression: Expression):
-        self.expression = expression
-
-    @property
-    def children(self):
-        return []
-
-
-class IfStatement(Statement):
-    def __init__(self, condition: Expression, then_branch: Body, else_branch: Optional[Body] = None):
-        self.condition = condition
-        self.then_branch = then_branch
-        self.else_branch = else_branch
-
-    @property
-    def children(self):
-        children = [self.condition, self.then_branch]
-        if self.else_branch is not None:
-            children.append(self.else_branch)
-        return children
-
-
-class ReturnStatement(Statement):
-    def __init__(self, expression: Expression):
-        self.expression = expression
-
-    @property
-    def children(self):
-        return [self.expression]
-
-
-class IdentifierExpression(Expression):
-    def __init__(self, name: str):
-        self.name = name
-
-    @property
-    def children(self):
-        return []
-
-
-class Literal(Expression):
-    def __init__(self, value: Any):
-        self.value = value
-
-    @property
-    def children(self):
-        return []
-
-
-class BinaryOperation(Expression):
-    def __init__(self, left: Expression, operator: BinaryOperator, right: Expression):
-        self.left = left
-        self.operator = operator
-        self.right = right
-
-    @property
-    def children(self):
-        return [self.left, self.right]
-
-
-class UnaryOperation(Expression):
-    def __init__(self, operator: UnaryOperator, operand: Expression):
-        self.operator = operator
-        self.operand = operand
-
-    @property
-    def children(self):
-        return [self.operand]
-
-
-class CallExpression(Expression):
-    def __init__(self, callee: IdentifierExpression, arguments: List[Expression]):
-        self.callee = callee
-        self.arguments = arguments  # List of expressions as arguments
-
-    @property
-    def children(self):
-        return self.arguments
