@@ -26,7 +26,7 @@ XML_FILE = Path.cwd().parent / EXAMPLE_FOLDER / f"{EXAMPLE_NAME}.drawio"
 def _display_paths(paths, graph):
     labeled_paths = []
     for i, path in enumerate(paths):
-        labeled_paths.append([graph.nodes[node]['label'] if graph.nodes[node]['label'] else "None" for node in path])  # Convert node IDs to labels
+        labeled_paths.append([graph.nodes[node].get('label') if graph.nodes[node].get('label', False) else "None" for node in path])  # Convert node IDs to labels
         print(f"Path {i+1}: {" -> ".join(labeled_paths[i])}")
     return labeled_paths
 
@@ -61,12 +61,11 @@ if __name__ == "__main__":
     end = time.time()
     logger.info(f"Number of paths from {start_node} to {end_nodes}: {len(paths)}")
     logger.info(f"Time taken to find paths: {end - start} seconds")
-    #_display_paths(paths, graph)
+    _display_paths(paths, graph)
 
     # highlight the first path
     def highlight():
         if paths:
             first_path = paths[0]  # Select the first path
-            checked = True
-            highlight_path_in_drawio(str(XML_FILE), [first_path], checked)
-    #highlight()
+            highlight_path_in_drawio(str(XML_FILE), [first_path])
+    highlight()

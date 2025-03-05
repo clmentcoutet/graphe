@@ -1,0 +1,77 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.9 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.9">
+  <diagram name="Page-1" id="lUTLSXaMAycTnynsC0tw">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="&lt;div&gt;&lt;font style=&quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&quot;&gt;&lt;font&gt;CHANGE HERE&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-17">
+          <mxCell style="verticalAlign=middle;align=center;overflow=width;vsdxID=19661;fillColor=#44749f;gradientColor=none;shape=stencil(tVLLDsIgEPwajhgEn+da/2NjaUtEaBa09e8FqbHatBfjbXZndjcDQ0Tmamgk4cx5tGfZqsLXRBwI58rUEpUPiIiciKy0KCu0V1OkuoGojOhib3FDl+aW28V+Fac4u/cdxp71Mcm1MgP5ji/YZk4OeAocjrdjr18n+fTCF0+hU46i9eCVNR+cBqwkDadoqaHqTyXKtVI2g/aMl7H1n5xMv+RfvATw/tNSaZ0iMeS/MxBaKT8ifwA=);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0.5,1,0],[0.5,0,0],[0,0.5,0],[1,0.5,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=11;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="130" y="760" width="120" height="44" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-18" target="oUKr5BVYVCaiad17IMRr-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;font color=&quot;#ffffff&quot;&gt;CHANGE HERE&lt;/font&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-18">
+          <mxCell style="vsdxID=19673;fillColor=#2e75b5;gradientColor=none;shape=stencil(UzV2Ls5ILEhVNTIoLinKz04tz0wpyVA1dlE1MsrMy0gtyiwBslSNXVWNndPyi1LTi/JL81Ig/IJEkEoQKze/DGRCBUSfAUiHkUElhGcK4bpBVOZk5iGpNEVVikeloQHZpsK0YlWLz1QgA+HFtMycHEgIIcujBwlQCBKcxq4A);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="320" y="728" width="180" height="108" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-19" target="oUKr5BVYVCaiad17IMRr-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;font color=&quot;#ffffff&quot;&gt;CHANGE HERE&lt;/font&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-19">
+          <mxCell style="vsdxID=19673;fillColor=#2e75b5;gradientColor=none;shape=stencil(UzV2Ls5ILEhVNTIoLinKz04tz0wpyVA1dlE1MsrMy0gtyiwBslSNXVWNndPyi1LTi/JL81Ig/IJEkEoQKze/DGRCBUSfAUiHkUElhGcK4bpBVOZk5iGpNEVVikeloQHZpsK0YlWLz1QgA+HFtMycHEgIIcujBwlQCBKcxq4A);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="600" y="728" width="180" height="108" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-20" target="oUKr5BVYVCaiad17IMRr-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;font color=&quot;#ffffff&quot;&gt;CHANGE HERE&lt;/font&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-20">
+          <mxCell style="vsdxID=19673;fillColor=#2e75b5;gradientColor=none;shape=stencil(UzV2Ls5ILEhVNTIoLinKz04tz0wpyVA1dlE1MsrMy0gtyiwBslSNXVWNndPyi1LTi/JL81Ig/IJEkEoQKze/DGRCBUSfAUiHkUElhGcK4bpBVOZk5iGpNEVVikeloQHZpsK0YlWLz1QgA+HFtMycHEgIIcujBwlQCBKcxq4A);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="870" y="728" width="180" height="108" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;div&gt;&lt;font style=&quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&quot;&gt;&lt;font&gt;CHANGE HERE&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-21">
+          <mxCell style="verticalAlign=middle;align=center;overflow=width;vsdxID=19661;fillColor=#44749f;gradientColor=none;shape=stencil(tVLLDsIgEPwajhgEn+da/2NjaUtEaBa09e8FqbHatBfjbXZndjcDQ0Tmamgk4cx5tGfZqsLXRBwI58rUEpUPiIiciKy0KCu0V1OkuoGojOhib3FDl+aW28V+Fac4u/cdxp71Mcm1MgP5ji/YZk4OeAocjrdjr18n+fTCF0+hU46i9eCVNR+cBqwkDadoqaHqTyXKtVI2g/aMl7H1n5xMv+RfvATw/tNSaZ0iMeS/MxBaKT8ifwA=);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0.5,1,0],[0.5,0,0],[0,0.5,0],[1,0.5,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=11;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="1155" y="760" width="120" height="44" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;CHANGE HERE&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-22">
+          <mxCell style="verticalAlign=middle;align=center;overflow=width;vsdxID=19701;fillColor=#2E75B5;shape=stencil(nZBLDoAgDERP0z3SIyjew0SURgSD+Lu9kMZoXLhwN9O+tukAlrNpJg1SzDH4QW/URgNYgZTkjA4UkwJUgGXng+6DX1zLfmoymdXo17xh5zmRJ6Q42BWCfc2oJfdAr+Yv+AP9Cb7OJ3H/2JG1HNGz/84klThPVCc=);strokeColor=#006EAF;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0,0.5,0],[1,0.5,0],[0.5,1,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="750" y="600" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-23" target="oUKr5BVYVCaiad17IMRr-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;CHANGE HERE&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" tags="Flowchart" id="oUKr5BVYVCaiad17IMRr-23">
+          <mxCell style="verticalAlign=middle;align=center;overflow=width;vsdxID=19701;fillColor=#2E75B5;shape=stencil(nZBLDoAgDERP0z3SIyjew0SURgSD+Lu9kMZoXLhwN9O+tukAlrNpJg1SzDH4QW/URgNYgZTkjA4UkwJUgGXng+6DX1zLfmoymdXo17xh5zmRJ6Q42BWCfc2oJfdAr+Yv+AP9Cb7OJ3H/2JG1HNGz/84klThPVCc=);strokeColor=#006EAF;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0,0.5,0],[1,0.5,0],[0.5,1,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+            <mxGeometry x="490" y="910" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.011;entryY=0.496;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-17" target="oUKr5BVYVCaiad17IMRr-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-20" target="oUKr5BVYVCaiad17IMRr-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.509;entryY=0.049;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-22" target="oUKr5BVYVCaiad17IMRr-19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="692" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oUKr5BVYVCaiad17IMRr-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;" edge="1" parent="1" source="oUKr5BVYVCaiad17IMRr-19" target="oUKr5BVYVCaiad17IMRr-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

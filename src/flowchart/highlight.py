@@ -7,7 +7,7 @@ HIGHLIGHT_EDGE_COLOR = "#FF0000"  # Red
 HIGHLIGHT_EDGE_WIDTH = "4"  # Increase stroke width
 
 
-def highlight_path_in_drawio(xml_file_path: str, paths: list[list], checked: bool = True):
+def highlight_path_in_drawio(xml_file_path: str, paths: list[list]):
     """
     Modifies the .drawio XML file to highlight the given path by changing node and edge colors,
     and increasing stroke width.
@@ -31,39 +31,22 @@ def highlight_path_in_drawio(xml_file_path: str, paths: list[list], checked: boo
         return
 
     for path in paths:
-        print(path)
         for cell in diagram.iter("mxCell"):
             style = cell.get("style", "")
             cell_id = cell.get("id")
             source, target = cell.get("source"), cell.get("target")
-
             if cell_id in path:
                 # Handle nodes in the path
-                if checked:
-                    # Use default highlight color
-                    if "strokeColor=" in style:
-                        style = re.sub(r"strokeColor=[^;]+", f"strokeColor={HIGHLIGHT_NODE_COLOR}", style)
-                    else:
-                        style += f"strokeColor={HIGHLIGHT_NODE_COLOR};"
-
-                    # Set stroke width
-                    if "strokeWidth=" in style:
-                        style = re.sub(r"strokeWidth=[^;]+", f"strokeWidth={HIGHLIGHT_EDGE_WIDTH}", style)
-                    else:
-                        style += f"strokeWidth={HIGHLIGHT_EDGE_WIDTH};"
+                if "strokeColor=" in style:
+                    style = re.sub(r"strokeColor=[^;]+", f"strokeColor={HIGHLIGHT_NODE_COLOR}", style)
                 else:
-                    # When checked is False
-                    stroke_match = re.search(r"strokeColor=[^;]+", style)
-                    if not stroke_match:
-                        # Remove stroke if no existing stroke color
-                        style = re.sub(r"strokeColor=[^;]+;", "", style)  # Remove any existing stroke color
-                        style = re.sub(r"strokeWidth=[^;]+;", "", style)  # Remove any existing stroke width
-                    else:
-                        # Keep existing stroke color but update width
-                        if "strokeWidth=" in style:
-                            style = re.sub(r"strokeWidth=[^;]+", f"strokeWidth={HIGHLIGHT_EDGE_WIDTH}", style)
-                        else:
-                            style += f"strokeWidth={HIGHLIGHT_EDGE_WIDTH};"
+                    style += f"strokeColor={HIGHLIGHT_NODE_COLOR};"
+
+                # Set stroke width
+                if "strokeWidth=" in style:
+                    style = re.sub(r"strokeWidth=[^;]+", f"strokeWidth={HIGHLIGHT_EDGE_WIDTH}", style)
+                else:
+                    style += f"strokeWidth={HIGHLIGHT_EDGE_WIDTH};"
 
             # Check if the edge connects sequential nodes in the path
             if source is not None and target is not None and source in path and target in path:
@@ -73,32 +56,17 @@ def highlight_path_in_drawio(xml_file_path: str, paths: list[list], checked: boo
 
                 # Check if an edge connecting sequential nodes exists in the style attribute
                 if any(source_index + 1 in target_indexes for source_index in source_indexes):
-                    if checked:
-                        # Use default highlight color for edges
-                        if "strokeColor=" in style:
-                            style = re.sub(r"strokeColor=[^;]+", f"strokeColor={HIGHLIGHT_EDGE_COLOR}", style)
-                        else:
-                            style += f"strokeColor={HIGHLIGHT_EDGE_COLOR};"
-
-                        # Set stroke width
-                        if "strokeWidth=" in style:
-                            style = re.sub(r"strokeWidth=[^;]+", f"strokeWidth={HIGHLIGHT_EDGE_WIDTH}", style)
-                        else:
-                            style += f"strokeWidth={HIGHLIGHT_EDGE_WIDTH};"
+                    # Use default highlight color for edges
+                    if "strokeColor=" in style:
+                        style = re.sub(r"strokeColor=[^;]+", f"strokeColor={HIGHLIGHT_EDGE_COLOR}", style)
                     else:
-                        # When checked is False
-                        stroke_match = re.search(r"strokeColor=[^;]+", style)
-                        if not stroke_match:
-                            # Remove stroke if no existing stroke color
-                            style = re.sub(r"strokeColor=[^;]+;", "", style)  # Remove any existing stroke color
-                            style = re.sub(r"strokeWidth=[^;]+;", "", style)  # Remove any existing stroke width
-                        else:
-                            # Keep existing stroke color but update width
-                            if "strokeWidth=" in style:
-                                style = re.sub(r"strokeWidth=[^;]+", f"strokeWidth={HIGHLIGHT_EDGE_WIDTH}",
-                                               style)
-                            else:
-                                style += f"strokeWidth={HIGHLIGHT_EDGE_WIDTH};"
+                        style += f"strokeColor={HIGHLIGHT_EDGE_COLOR};"
+
+                    # Set stroke width
+                    if "strokeWidth=" in style:
+                        style = re.sub(r"strokeWidth=[^;]+", f"strokeWidth={HIGHLIGHT_EDGE_WIDTH}", style)
+                    else:
+                        style += f"strokeWidth={HIGHLIGHT_EDGE_WIDTH};"
 
             cell.set("style", style)
 
@@ -118,4 +86,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 3:
         checked = sys.argv[3].lower() == 'true'
 
-    highlight_path_in_drawio(xml_file_path, [path_to_highlight], checked)
+    highlight_path_in_drawio(xml_file_path, [path_to_highlight])
