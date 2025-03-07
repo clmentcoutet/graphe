@@ -15,5 +15,5 @@ class TreePort(ABC):
         pass
 
     @abstractmethod
-    def get_property(self, node: Node, prop: Any):
+    def get_property(self, node: Node, prop: Any, *, default=None, is_require=True) -> Any:
         pass

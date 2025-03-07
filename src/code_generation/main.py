@@ -14,7 +14,7 @@ if __name__ == "__main__":
     code = generator.generate()
     print("Python Code:")
     print(code)
-    with open('output.py', 'w') as f:
+    with open("output.py", "w") as f:
         f.write(code)
 
     # Generate Java code
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     code = generator.generate()
     print("\nJava Code:")
     print(code)
-    with open('output.java', 'w') as f:
+    with open("output.java", "w") as f:
         f.write(code)
 
     # Generate JS code
@@ -30,5 +30,5 @@ if __name__ == "__main__":
     code = generator.generate()
     print("\nJS Code:")
     print(code)
-    with open('output.js', 'w') as f:
+    with open("output.js", "w") as f:
         f.write(code)

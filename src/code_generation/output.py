@@ -1,7 +1,7 @@
 class MathUtils:
-    count : int = 0
-    name : str = 2
-    base : int
+    count: int = 0
+    name: str = 2
+    base: int
 
     def factorial(self, n) -> int:
         if n > 0:

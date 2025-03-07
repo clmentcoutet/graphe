@@ -10,32 +10,29 @@ class Statement(Node, metaclass=ABCMeta):
 
 
 class ExpressionStatement(Statement):
-    def __init__(self, expression: Expression):
-        self.expression = expression
+    """
+    Represents an expression statement in the code.
 
-    @property
-    def children(self):
-        return []
+    Java attributes:
+        - expression (Expression): The expression to be evaluated.
+    """
 
 
 class IfStatement(Statement):
-    def __init__(self, condition: Expression, then_branch: Body, else_branch: Optional[Body] = None):
-        self.condition = condition
-        self.then_branch = then_branch
-        self.else_branch = else_branch
+    """
+    Represents an if statement in the code.
 
-    @property
-    def children(self):
-        children = [self.condition, self.then_branch]
-        if self.else_branch is not None:
-            children.append(self.else_branch)
-        return children
+    Java attributes:
+        - condition (Expression): The condition to be evaluated.
+        - then (Body): The body of the if statement when the condition is true.
+        - _else (Optional[Body]): The body of the if statement when the condition is false.
+    """
 
 
 class ReturnStatement(Statement):
-    def __init__(self, expression: Expression):
-        self.expression = expression
+    """"
+    Represents a return statement in the code.
 
-    @property
-    def children(self):
-        return [self.expression]
+    Java attributes:
+        - expression (Expression): The expression to be returned.
+    """

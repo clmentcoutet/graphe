@@ -1,11 +1,32 @@
 from abc import ABC, abstractmethod
 
 from src.code_generation.syntax.custom_type import NodeType
-from src.code_generation.syntax.definition import ClassDefinition, AttributeDefinition, FunctionDefinition
-from src.code_generation.syntax.expression import BaseTypeExpression, IdentifierExpression, Literal, BinaryOperation, \
-    UnaryOperation, CallExpression
-from src.code_generation.syntax.statement import ExpressionStatement, IfStatement, ReturnStatement
-from src.code_generation.syntax.syntax_tree import Node, Decorator, Module, Parameters, Parameter, Body
+from src.code_generation.syntax.definition import (
+    ClassDefinition,
+    AttributeDefinition,
+    FunctionDefinition,
+)
+from src.code_generation.syntax.expression import (
+    BaseTypeExpression,
+    IdentifierExpression,
+    Literal,
+    BinaryOperation,
+    UnaryOperation,
+    CallExpression,
+)
+from src.code_generation.syntax.statement import (
+    ExpressionStatement,
+    IfStatement,
+    ReturnStatement,
+)
+from src.code_generation.syntax.syntax_tree import (
+    Node,
+    Decorator,
+    Module,
+    Parameters,
+    Parameter,
+    Body,
+)
 from src.code_generation.tree.adapter.TreePort import TreePort
 
 
@@ -20,7 +41,6 @@ class CodeGenerator(ABC):
         self.visit_map = {
             NodeType.MODULE: self.visit_module,
             NodeType.FUNCTION_DEF: self.visit_function_def,
-            NodeType.PARAMETERS: self.visit_parameters,
             NodeType.PARAMETER: self.visit_parameter,
             NodeType.BODY: self.visit_body,
             NodeType.EXPRESSION_STATEMENT: self.visit_expression_statement,
@@ -47,73 +67,56 @@ class CodeGenerator(ABC):
     def generate(self):
         return self.visit(self.root, 0)
 
+    def get_property(self, node: Node, property: str, default=None, is_require=True):
+        return self.tree_adapter.get_property(node, property, default=default, is_require=is_require)
+
+    def get_indent_str(self, indent: int):
+        return self.INDENT * indent
+
     def visit_module(self, node: Module, indent: int):
-        code = [self.visit(child, indent) for child in self.tree_adapter.get_children(node)]
-        return "\n\n".join(code)
+        raise NotImplementedError
 
-    @abstractmethod
     def visit_base_type_expression(self, node: BaseTypeExpression, indent: int):
-        node.get_name(self.base_type)
+        raise NotImplementedError
 
-    @abstractmethod
     def visit_decorator(self, node: Decorator, indent: int):
         raise NotImplementedError
 
-    @abstractmethod
     def visit_class_def(self, node: ClassDefinition, indent: int):
         raise NotImplementedError
 
-    @abstractmethod
     def visit_attribute_def(self, node: AttributeDefinition, indent: int):
         raise NotImplementedError
 
-    @abstractmethod
     def visit_function_def(self, node: FunctionDefinition, indent: int):
         raise NotImplementedError
 
-    def visit_parameters(self, node: Parameters, indent: int):
-        params = [self.visit(child, indent) for child in self.tree_adapter.get_children(node)]
-        return ", ".join(params)
-
     def visit_parameter(self, node: Parameter, indent: int):
-        return self.visit(self.tree_adapter.get_property(node, 'name'), indent)
+        raise NotImplementedError
 
     def visit_body(self, node: Body, indent: int):
-        code = [self.visit(child, indent) for child in self.tree_adapter.get_children(node)]
-        return f"{self.INDENT * indent}\n".join(code)
+        raise NotImplementedError
 
-    @abstractmethod
     def visit_expression_statement(self, node: ExpressionStatement, indent: int):
         raise NotImplementedError
 
-    @abstractmethod
     def visit_if_statement(self, node: IfStatement, indent: int):
         raise NotImplementedError
 
-    @abstractmethod
     def visit_return_statement(self, node: ReturnStatement, indent: int):
         raise NotImplementedError
 
-    @abstractmethod
     def visit_identifier_expression(self, node: IdentifierExpression, indent: int):
         raise NotImplementedError
 
     def visit_literal(self, node: Literal, indent: int):
-        return self.tree_adapter.get_property(node, 'value')
+        raise NotImplementedError
 
     def visit_binary_operation(self, node: BinaryOperation, indent: int):
-        children = self.tree_adapter.get_children(node)
-        left = self.visit(children[0], indent)
-        right = self.visit(children[1], indent)
-        op = self.tree_adapter.get_property(node, 'operator').value
-        return f"{left} {op} {right}"
+        raise NotImplementedError
 
     def visit_unary_operation(self, node: UnaryOperation, indent: int):
-        children = self.tree_adapter.get_children(node)
-        op = self.tree_adapter.get_property(node, 'operator').value
-        operand = self.visit(children[0], indent)
-        return f"{op}{operand}"
+        raise NotImplementedError
 
-    @abstractmethod
     def visit_call_expression(self, node: CallExpression, indent: int):
         raise NotImplementedError

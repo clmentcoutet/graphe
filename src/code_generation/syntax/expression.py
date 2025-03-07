@@ -10,67 +10,64 @@ class Expression(Node, metaclass=ABCMeta):
     pass
 
 
+class Operation(Expression, metaclass=ABCMeta):
+    pass
+
+
 class IdentifierExpression(Expression):
-    def __init__(
-            self,
-            name: str,
-            *,
-            super_class: Optional['IdentifierDefinition'] = None):
-        self.name = name
-        self.super_class = super_class
+    """
+    Represents an identifier expression.
 
-
-    @property
-    def children(self):
-        return []
+    Java attributes:
+        name (str): The name of the identifier.
+        super_class (Optional[IdentifierExpression]): The superclass reference, if applicable.
+    """
 
 
 class BaseTypeExpression(IdentifierExpression):
-    def __init__(
-            self,
-            name: str,
-        ):
-        super().__init__(name=name)
+    """
+    Represents a reference to a base type.
 
-    def get_name(self, base_type: BaseType):
-        return getattr(base_type, self.name)
+    Java attributes:
+        name (BaseType): The name of the base type.
+    """
 
 
 class Literal(Expression):
-    def __init__(self, value: Any):
-        self.value = value
+    """
+    Represents a literal value.
 
-    @property
-    def children(self):
-        return []
-
-
-class BinaryOperation(Expression):
-    def __init__(self, left: Expression, operator: BinaryOperator, right: Expression):
-        self.left = left
-        self.operator = operator
-        self.right = right
-
-    @property
-    def children(self):
-        return [self.left, self.right]
+    Java attributes:
+        value (Any): The value of the literal.
+    """
 
 
-class UnaryOperation(Expression):
-    def __init__(self, operator: UnaryOperator, operand: Expression):
-        self.operator = operator
-        self.operand = operand
+class BinaryOperation(Operation):
+    """
+    Represents a binary operation.
 
-    @property
-    def children(self):
-        return [self.operand]
+    Java attributes:
+        operator (BinaryOperator): The operator of the binary operation.
+        left (Expression): The left operand of the binary operation.
+        right (Expression): The right operand of the binary operation.
+    """
+
+
+class UnaryOperation(Operation):
+    """
+    Represents a unary operation.
+
+    Java attributes:
+        operator (UnaryOperator): The operator of the unary operation.
+        operand (Expression): The operand of the unary operation.
+    """
 
 
 class CallExpression(Expression):
-    def __init__(self, callee: IdentifierExpression, arguments: List[Expression]):
-        self.callee = callee
-        self.arguments = arguments  # List of expressions as arguments
+    """
+    Represents a method call expression.
 
-    @property
-    def children(self):
-        return self.arguments
+    Java attributes:
+        callee (IdentifierExpression): The identifier expression of the callee.
+        arguments (Optional[List[Expression]]): The list of arguments for the method call.
+    """

@@ -3,13 +3,12 @@ import time
 from pathlib import Path
 
 
-from src.flowchart.display import InteractiveGraph
-from src.flowchart.highlight import highlight_path_in_drawio
-from src.flowchart.parse import parse_drawio
 from src.graph.find_cycles import find_cycles
-from src.graph.find_path_with_cycles import find_paths_with_cycles, logger as path_logger
+from src.graph.find_path_with_cycles import find_paths_with_cycles
 from src.graph.find_start_end_node import find_start_end_nodes
-
+from src.graph.flowchart.display import InteractiveGraph
+from src.graph.flowchart.highlight import highlight_path_in_drawio
+from src.graph.flowchart.parse import parse_drawio
 
 logger = logging.getLogger(__name__)
 

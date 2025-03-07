@@ -9,33 +9,33 @@ class Language(Enum):
 
 
 class JavaBaseType(Enum):
-    DEFAULT = 'Object'
-    BOOLEAN = 'boolean'
-    CHAR = 'char'
-    BYTE = 'byte'
-    INTEGER = 'int'
-    FLOAT = 'float'
-    STRING = 'string'
+    DEFAULT = "Object"
+    BOOLEAN = "boolean"
+    CHAR = "char"
+    BYTE = "byte"
+    INTEGER = "int"
+    FLOAT = "float"
+    STRING = "string"
 
 
 class PythonBaseType(Enum):
-    DEFAULT = 'object'
-    BOOLEAN = 'bool'
-    CHAR = 'char'
-    BYTE = 'byte'
-    INTEGER = 'int'
-    FLOAT = 'float'
-    STRING ='str'
+    DEFAULT = "object"
+    BOOLEAN = "bool"
+    CHAR = "char"
+    BYTE = "byte"
+    INTEGER = "int"
+    FLOAT = "float"
+    STRING = "str"
 
 
 class JavaScriptBaseType(Enum):
-    DEFAULT = 'Object'
-    BOOLEAN = 'boolean'
-    CHAR = 'String'
-    BYTE = 'Number'
-    INTEGER = 'Number'
-    FLOAT = 'Number'
-    STRING ='string'
+    DEFAULT = "Object"
+    BOOLEAN = "boolean"
+    CHAR = "String"
+    BYTE = "Number"
+    INTEGER = "Number"
+    FLOAT = "Number"
+    STRING = "string"
 
 
 class BaseType:
