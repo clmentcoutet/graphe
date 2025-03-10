@@ -2,11 +2,29 @@ import pytest
 
 from src.code_generation.generator.JavaCodeGenerator import JavaCodeGenerator
 from src.code_generation.syntax.base_type import Language
-from src.code_generation.syntax.custom_type import UnaryOperator, BinaryOperator, Modifier
-from src.code_generation.syntax.definition import AttributeDefinition, FunctionDefinition, ClassDefinition
-from src.code_generation.syntax.expression import IdentifierExpression, Literal, BaseTypeExpression, CallExpression, \
-    UnaryOperation, BinaryOperation
-from src.code_generation.syntax.statement import ReturnStatement, ExpressionStatement, IfStatement
+from src.code_generation.syntax.custom_type import (
+    UnaryOperator,
+    BinaryOperator,
+    Modifier,
+)
+from src.code_generation.syntax.definition import (
+    AttributeDefinition,
+    FunctionDefinition,
+    ClassDefinition,
+)
+from src.code_generation.syntax.expression import (
+    IdentifierExpression,
+    Literal,
+    BaseTypeExpression,
+    CallExpression,
+    UnaryOperation,
+    BinaryOperation,
+)
+from src.code_generation.syntax.statement import (
+    ReturnStatement,
+    ExpressionStatement,
+    IfStatement,
+)
 from src.code_generation.syntax.syntax_tree import Parameter, Decorator, Body
 from src.code_generation.tree.adapter.ClassTreeAdapter import ClassTreeAdapter
 
@@ -14,6 +32,7 @@ from src.code_generation.tree.adapter.ClassTreeAdapter import ClassTreeAdapter
 @pytest.fixture
 def adapter():
     return ClassTreeAdapter()
+
 
 @pytest.fixture
 def language():
@@ -30,7 +49,10 @@ def test_node_BaseTypeExpression_no_name__raise_AttributeError(adapter, language
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'BaseTypeExpression'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'BaseTypeExpression'"
+    )
 
 
 def test_node_BaseTypeExpression_name__return_name(adapter, language):
@@ -55,7 +77,10 @@ def test_node_Literal_no_value__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'value' is not defined but required for class 'Literal'"
+    assert (
+        str(e.value)
+        == "Attribute 'value' is not defined but required for class 'Literal'"
+    )
 
 
 def test_node_Literal_value__return_value(adapter, language):
@@ -80,7 +105,10 @@ def test_node_IdentifierExpression_no_name__raise_AttributeError(adapter, langua
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'IdentifierExpression'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'IdentifierExpression'"
+    )
 
 
 def test_node_IdentifierExpression_name_no_super_class__return_name(adapter, language):
@@ -95,9 +123,13 @@ def test_node_IdentifierExpression_name_no_super_class__return_name(adapter, lan
     assert code == "myVariable"
 
 
-def test_node_IdentifierExpression_name_super_class__return_super_class_name(adapter, language):
+def test_node_IdentifierExpression_name_super_class__return_super_class_name(
+    adapter, language
+):
     # Arrange
-    expression = IdentifierExpression(name="myVariable", super_class=IdentifierExpression(name="MySuperClass"))
+    expression = IdentifierExpression(
+        name="myVariable", super_class=IdentifierExpression(name="MySuperClass")
+    )
     generator = JavaCodeGenerator(adapter, expression)
 
     # Act
@@ -117,7 +149,10 @@ def test_node_Parameter_no_type__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'type' is not defined but required for class 'Parameter'"
+    assert (
+        str(e.value)
+        == "Attribute 'type' is not defined but required for class 'Parameter'"
+    )
 
 
 def test_node_Parameter_no_name__raise_AttributeError(adapter, language):
@@ -130,14 +165,17 @@ def test_node_Parameter_no_name__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'Parameter'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'Parameter'"
+    )
 
 
 def test_node_Parameter_name_type__return_parameter_string(adapter, language):
     # Arrange
     parameter = Parameter(
         type=BaseTypeExpression(name="int"),
-        name=IdentifierExpression(name="myVariable")
+        name=IdentifierExpression(name="myVariable"),
     )
     generator = JavaCodeGenerator(adapter, parameter)
 
@@ -158,7 +196,10 @@ def test_node_Decorator_no_name__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'Decorator'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'Decorator'"
+    )
 
 
 def test_node_Decorator_name_no_arguments__return_decorator_string(adapter, language):
@@ -179,8 +220,8 @@ def test_node_Decorator_name_arguments__return_decorator_string(adapter, languag
         name=IdentifierExpression(name="myDecorator"),
         arguments=[
             IdentifierExpression(name="arg1"),
-            IdentifierExpression(name="arg2")
-        ]
+            IdentifierExpression(name="arg2"),
+        ],
     )
     generator = JavaCodeGenerator(adapter, decorator)
 
@@ -201,7 +242,11 @@ def test_node_CallExpression_no_callee__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'callee' is not defined but required for class 'CallExpression'"
+    assert (
+        str(e.value)
+        == "Attribute 'callee' is not defined but required for class 'CallExpression'"
+    )
+
 
 def test_no_CallExpression_callee_no_arguments_return_call_string(adapter, language):
     # Arrange
@@ -216,14 +261,15 @@ def test_no_CallExpression_callee_no_arguments_return_call_string(adapter, langu
     # Assert
     assert code == "myFunction()"
 
+
 def test_no_CallExpression_callee_arguments__return_call_string(adapter, language):
     # Arrange
     expression = CallExpression(
         callee=IdentifierExpression(name="myFunction"),
         arguments=[
             IdentifierExpression(name="arg1"),
-            IdentifierExpression(name="arg2")
-        ]
+            IdentifierExpression(name="arg2"),
+        ],
     )
     generator = JavaCodeGenerator(adapter, expression)
 
@@ -232,6 +278,7 @@ def test_no_CallExpression_callee_arguments__return_call_string(adapter, languag
 
     # Assert
     assert code == "myFunction(arg1, arg2)"
+
 
 def test_node_UnaryOperation_no_operand__raise_AttributeError(adapter, language):
     # Arrange
@@ -243,7 +290,11 @@ def test_node_UnaryOperation_no_operand__raise_AttributeError(adapter, language)
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'operand' is not defined but required for class 'UnaryOperation'"
+    assert (
+        str(e.value)
+        == "Attribute 'operand' is not defined but required for class 'UnaryOperation'"
+    )
+
 
 def test_node_UnaryOperation_no_operator__raise_AttributeError(adapter, language):
     # Arrange
@@ -255,13 +306,18 @@ def test_node_UnaryOperation_no_operator__raise_AttributeError(adapter, language
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'operator' is not defined but required for class 'UnaryOperation'"
+    assert (
+        str(e.value)
+        == "Attribute 'operator' is not defined but required for class 'UnaryOperation'"
+    )
 
-def test_node_UnaryOperation_operand_operator__return_unary_operation_string(adapter, language):
+
+def test_node_UnaryOperation_operand_operator__return_unary_operation_string(
+    adapter, language
+):
     # Arrange
     expression = UnaryOperation(
-        operand=IdentifierExpression(name="myVariable"),
-        operator=UnaryOperator.NEG
+        operand=IdentifierExpression(name="myVariable"), operator=UnaryOperator.NEG
     )
     generator = JavaCodeGenerator(adapter, expression)
 
@@ -270,6 +326,7 @@ def test_node_UnaryOperation_operand_operator__return_unary_operation_string(ada
 
     # Assert
     assert code == "-myVariable"
+
 
 def test_node_BinaryOperation_no_left_operand__raise_AttributeError(adapter, language):
     # Arrange
@@ -281,7 +338,11 @@ def test_node_BinaryOperation_no_left_operand__raise_AttributeError(adapter, lan
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'left' is not defined but required for class 'BinaryOperation'"
+    assert (
+        str(e.value)
+        == "Attribute 'left' is not defined but required for class 'BinaryOperation'"
+    )
+
 
 def test_node_BinaryOperation_no_right_operand__raise_AttributeError(adapter, language):
     # Arrange
@@ -293,11 +354,18 @@ def test_node_BinaryOperation_no_right_operand__raise_AttributeError(adapter, la
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'right' is not defined but required for class 'BinaryOperation'"
+    assert (
+        str(e.value)
+        == "Attribute 'right' is not defined but required for class 'BinaryOperation'"
+    )
+
 
 def test_node_BinaryOperation_no_operator__raise_AttributeError(adapter, language):
     # Arrange
-    expression = BinaryOperation(left=IdentifierExpression(name="myLeftVariable"), right=IdentifierExpression(name="myRightVariable"))
+    expression = BinaryOperation(
+        left=IdentifierExpression(name="myLeftVariable"),
+        right=IdentifierExpression(name="myRightVariable"),
+    )
     generator = JavaCodeGenerator(adapter, expression)
 
     # Act
@@ -305,14 +373,20 @@ def test_node_BinaryOperation_no_operator__raise_AttributeError(adapter, languag
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'operator' is not defined but required for class 'BinaryOperation'"
+    assert (
+        str(e.value)
+        == "Attribute 'operator' is not defined but required for class 'BinaryOperation'"
+    )
 
-def test_node_BinaryOperation_left_right_operator__return_binary_operation_string(adapter, language):
+
+def test_node_BinaryOperation_left_right_operator__return_binary_operation_string(
+    adapter, language
+):
     # Arrange
     expression = BinaryOperation(
         left=IdentifierExpression(name="myLeftVariable"),
         right=IdentifierExpression(name="myRightVariable"),
-        operator=BinaryOperator.ADD
+        operator=BinaryOperator.ADD,
     )
     generator = JavaCodeGenerator(adapter, expression)
 
@@ -321,6 +395,7 @@ def test_node_BinaryOperation_left_right_operator__return_binary_operation_strin
 
     # Assert
     assert code == "myLeftVariable + myRightVariable"
+
 
 def test_node_ReturnStatement_no_expression__raise_AttributeError(adapter, language):
     # Arrange
@@ -332,7 +407,11 @@ def test_node_ReturnStatement_no_expression__raise_AttributeError(adapter, langu
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'expression' is not defined but required for class 'ReturnStatement'"
+    assert (
+        str(e.value)
+        == "Attribute 'expression' is not defined but required for class 'ReturnStatement'"
+    )
+
 
 def test_node_ReturnStatement_expression__return_return_string(adapter, language):
     # Arrange
@@ -345,7 +424,10 @@ def test_node_ReturnStatement_expression__return_return_string(adapter, language
     # Assert
     assert code == "return myVariable;"
 
-def test_node_ExpressionStatement_no_expression__raise_AttributeError(adapter, language):
+
+def test_node_ExpressionStatement_no_expression__raise_AttributeError(
+    adapter, language
+):
     # Arrange
     statement = ExpressionStatement()
     generator = JavaCodeGenerator(adapter, statement)
@@ -355,9 +437,15 @@ def test_node_ExpressionStatement_no_expression__raise_AttributeError(adapter, l
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'expression' is not defined but required for class 'ExpressionStatement'"
+    assert (
+        str(e.value)
+        == "Attribute 'expression' is not defined but required for class 'ExpressionStatement'"
+    )
 
-def test_node_ExpressionStatement_expression__return_expression_statement_string(adapter, language):
+
+def test_node_ExpressionStatement_expression__return_expression_statement_string(
+    adapter, language
+):
     # Arrange
     statement = ExpressionStatement(expression=IdentifierExpression(name="myVariable"))
     generator = JavaCodeGenerator(adapter, statement)
@@ -367,6 +455,7 @@ def test_node_ExpressionStatement_expression__return_expression_statement_string
 
     # Assert
     assert code == "myVariable;"
+
 
 def test_node_IfStatement_no_condition__raise_AttributeError(adapter, language):
     # Arrange
@@ -378,7 +467,11 @@ def test_node_IfStatement_no_condition__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'condition' is not defined but required for class 'IfStatement'"
+    assert (
+        str(e.value)
+        == "Attribute 'condition' is not defined but required for class 'IfStatement'"
+    )
+
 
 def test_node_IfStatement_condition_no_then__raise_AttributeError(adapter, language):
     # Arrange
@@ -390,13 +483,25 @@ def test_node_IfStatement_condition_no_then__raise_AttributeError(adapter, langu
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'then' is not defined but required for class 'IfStatement'"
+    assert (
+        str(e.value)
+        == "Attribute 'then' is not defined but required for class 'IfStatement'"
+    )
 
-def test_node_IfStatement_condition_then_no_else__return_if_statement_string(adapter, language):
+
+def test_node_IfStatement_condition_then_no_else__return_if_statement_string(
+    adapter, language
+):
     # Arrange
     statement = IfStatement(
         condition=IdentifierExpression(name="myCondition"),
-        then=Body(statements=[ReturnStatement(expression=IdentifierExpression(name="myReturnVariable"))])
+        then=Body(
+            statements=[
+                ReturnStatement(
+                    expression=IdentifierExpression(name="myReturnVariable")
+                )
+            ]
+        ),
     )
     generator = JavaCodeGenerator(adapter, statement)
 
@@ -404,15 +509,33 @@ def test_node_IfStatement_condition_then_no_else__return_if_statement_string(ada
     code = generator.generate()
 
     # Assert
-    assert code == """if (myCondition) {
+    assert (
+        code
+        == """if (myCondition) {
     return myReturnVariable;\n}"""
+    )
 
-def test_node_IfStatement_condition_then_else__return_if_statement_string(adapter, language):
+
+def test_node_IfStatement_condition_then_else__return_if_statement_string(
+    adapter, language
+):
     # Arrange
     statement = IfStatement(
         condition=IdentifierExpression(name="myCondition"),
-        then=Body(statements=[ReturnStatement(expression=IdentifierExpression(name="myReturnVariable"))]),
-        _else=Body(statements=[ReturnStatement(expression=IdentifierExpression(name="myDefaultReturnVariable"))])
+        then=Body(
+            statements=[
+                ReturnStatement(
+                    expression=IdentifierExpression(name="myReturnVariable")
+                )
+            ]
+        ),
+        _else=Body(
+            statements=[
+                ReturnStatement(
+                    expression=IdentifierExpression(name="myDefaultReturnVariable")
+                )
+            ]
+        ),
     )
     generator = JavaCodeGenerator(adapter, statement)
 
@@ -420,9 +543,13 @@ def test_node_IfStatement_condition_then_else__return_if_statement_string(adapte
     code = generator.generate()
 
     # Assert
-    assert code == """if (myCondition) {
+    assert (
+        code
+        == """if (myCondition) {
     return myReturnVariable;\n} else {
     return myDefaultReturnVariable;\n}"""
+    )
+
 
 def test_node_Body_no_statements__raise_AttributeError(adapter, language):
     # Arrange
@@ -434,22 +561,32 @@ def test_node_Body_no_statements__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'statements' is not defined but required for class 'Body'"
+    assert (
+        str(e.value)
+        == "Attribute 'statements' is not defined but required for class 'Body'"
+    )
+
 
 def test_node_Body_two_statements__return_body_string(adapter, language):
     # Arrange
-    body = Body(statements=[
-        ExpressionStatement(expression=IdentifierExpression(name="myVariable1")),
-        ReturnStatement(expression=IdentifierExpression(name="myVariable2"))
-    ])
+    body = Body(
+        statements=[
+            ExpressionStatement(expression=IdentifierExpression(name="myVariable1")),
+            ReturnStatement(expression=IdentifierExpression(name="myVariable2")),
+        ]
+    )
     generator = JavaCodeGenerator(adapter, body)
 
     # Act
     code = generator.generate()
 
     # Assert
-    assert code == """myVariable1;
+    assert (
+        code
+        == """myVariable1;
 return myVariable2;"""
+    )
+
 
 def test_node_AttributeDefinition_no_name__raise_AttributeError(adapter, language):
     # Arrange
@@ -461,9 +598,15 @@ def test_node_AttributeDefinition_no_name__raise_AttributeError(adapter, languag
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'AttributeDefinition'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'AttributeDefinition'"
+    )
 
-def test_node_AttributeDefinition_name_no_modifier__raise_AttributeError(adapter, language):
+
+def test_node_AttributeDefinition_name_no_modifier__raise_AttributeError(
+    adapter, language
+):
     # Arrange
     definition = AttributeDefinition(name=IdentifierExpression(name="MyVariable"))
     generator = JavaCodeGenerator(adapter, definition)
@@ -473,11 +616,19 @@ def test_node_AttributeDefinition_name_no_modifier__raise_AttributeError(adapter
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'modifier' is not defined but required for class 'AttributeDefinition'"
+    assert (
+        str(e.value)
+        == "Attribute 'modifier' is not defined but required for class 'AttributeDefinition'"
+    )
 
-def test_node_AttributeDefinition_name_modifier_no_type__raise_AttributeError(adapter, language):
+
+def test_node_AttributeDefinition_name_modifier_no_type__raise_AttributeError(
+    adapter, language
+):
     # Arrange
-    definition = AttributeDefinition(name=IdentifierExpression(name="myVariable"), modifier=Modifier.PUBLIC)
+    definition = AttributeDefinition(
+        name=IdentifierExpression(name="myVariable"), modifier=Modifier.PUBLIC
+    )
     generator = JavaCodeGenerator(adapter, definition)
 
     # Act
@@ -485,30 +636,20 @@ def test_node_AttributeDefinition_name_modifier_no_type__raise_AttributeError(ad
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'type' is not defined but required for class 'AttributeDefinition'"
-
-def test_node_AttributeDefinition_name_modifier_type_no_initializer__return_attribute_definition_string(adapter, language):
-    # Arrange
-    definition = AttributeDefinition(
-        name=IdentifierExpression(name="myVariable"),
-        modifier=Modifier.PUBLIC,
-        type=IdentifierExpression(name="int")
+    assert (
+        str(e.value)
+        == "Attribute 'type' is not defined but required for class 'AttributeDefinition'"
     )
-    generator = JavaCodeGenerator(adapter, definition)
 
-    # Act
-    code = generator.generate()
 
-    # Assert
-    assert code == "public int myVariable"
-
-def test_node_AttributeDefinition_name_modifier_type_initializer__return_attribute_definition_string(adapter, language):
+def test_node_AttributeDefinition_name_modifier_type_no_initializer__return_attribute_definition_string(
+    adapter, language
+):
     # Arrange
     definition = AttributeDefinition(
         name=IdentifierExpression(name="myVariable"),
         modifier=Modifier.PUBLIC,
         type=IdentifierExpression(name="int"),
-        initializer=Literal(value=0)
     )
     generator = JavaCodeGenerator(adapter, definition)
 
@@ -516,7 +657,27 @@ def test_node_AttributeDefinition_name_modifier_type_initializer__return_attribu
     code = generator.generate()
 
     # Assert
-    assert code == "public int myVariable = 0"
+    assert code == "public int myVariable;"
+
+
+def test_node_AttributeDefinition_name_modifier_type_initializer__return_attribute_definition_string(
+    adapter, language
+):
+    # Arrange
+    definition = AttributeDefinition(
+        name=IdentifierExpression(name="myVariable"),
+        modifier=Modifier.PUBLIC,
+        type=IdentifierExpression(name="int"),
+        initializer=Literal(value=0),
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "public int myVariable = 0;"
+
 
 def test_node_FunctionDefinition_no_name__raise_AttributeError(adapter, language):
     # Arrange
@@ -528,9 +689,15 @@ def test_node_FunctionDefinition_no_name__raise_AttributeError(adapter, language
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'FunctionDefinition'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'FunctionDefinition'"
+    )
 
-def test_node_FunctionDefinition_name_no_modifier__raise_AttributeError(adapter, language):
+
+def test_node_FunctionDefinition_name_no_modifier__raise_AttributeError(
+    adapter, language
+):
     # Arrange
     definition = FunctionDefinition(name=IdentifierExpression(name="myFunction"))
     generator = JavaCodeGenerator(adapter, definition)
@@ -540,11 +707,19 @@ def test_node_FunctionDefinition_name_no_modifier__raise_AttributeError(adapter,
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'modifier' is not defined but required for class 'FunctionDefinition'"
+    assert (
+        str(e.value)
+        == "Attribute 'modifier' is not defined but required for class 'FunctionDefinition'"
+    )
 
-def test_node_FunctionDefinition_name_modifier_no_return_type__raise_AttributeError(adapter, language):
+
+def test_node_FunctionDefinition_name_modifier_no_return_type__raise_AttributeError(
+    adapter, language
+):
     # Arrange
-    definition = FunctionDefinition(name=IdentifierExpression(name="myFunction"), modifier=Modifier.PUBLIC)
+    definition = FunctionDefinition(
+        name=IdentifierExpression(name="myFunction"), modifier=Modifier.PUBLIC
+    )
     generator = JavaCodeGenerator(adapter, definition)
 
     # Act
@@ -552,14 +727,20 @@ def test_node_FunctionDefinition_name_modifier_no_return_type__raise_AttributeEr
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'return_type' is not defined but required for class 'FunctionDefinition'"
+    assert (
+        str(e.value)
+        == "Attribute 'return_type' is not defined but required for class 'FunctionDefinition'"
+    )
 
-def test_node_FunctionDefinition_name_modifier_return_type_no_body__return_function_definition_string(adapter, language):
+
+def test_node_FunctionDefinition_name_modifier_return_type_no_body__return_function_definition_string(
+    adapter, language
+):
     # Arrange
     definition = FunctionDefinition(
         name=IdentifierExpression(name="myFunction"),
         modifier=Modifier.PUBLIC,
-        return_type=IdentifierExpression(name="void")
+        return_type=IdentifierExpression(name="void"),
     )
     generator = JavaCodeGenerator(adapter, definition)
 
@@ -569,13 +750,21 @@ def test_node_FunctionDefinition_name_modifier_return_type_no_body__return_funct
     # Assert
     assert code == """public void myFunction() {\n}"""
 
-def test_node_FunctionDefinition_name_modifier_return_type_parameter_no_body__return_function_definition_string(adapter, language):
+
+def test_node_FunctionDefinition_name_modifier_return_type_parameter_no_body__return_function_definition_string(
+    adapter, language
+):
     # Arrange
     definition = FunctionDefinition(
         name=IdentifierExpression(name="myFunction"),
         modifier=Modifier.PUBLIC,
         return_type=IdentifierExpression(name="void"),
-        parameters=[Parameter(type=IdentifierExpression(name="int"), name=IdentifierExpression(name="myParameter"))]
+        parameters=[
+            Parameter(
+                type=IdentifierExpression(name="int"),
+                name=IdentifierExpression(name="myParameter"),
+            )
+        ],
     )
     generator = JavaCodeGenerator(adapter, definition)
 
@@ -585,14 +774,26 @@ def test_node_FunctionDefinition_name_modifier_return_type_parameter_no_body__re
     # Assert
     assert code == """public void myFunction(int myParameter) {\n}"""
 
-def test_node_FunctionDefinition_name_modifier_return_type_parameter_body__return_function_definition_string(adapter, language):
+
+def test_node_FunctionDefinition_name_modifier_return_type_parameter_body__return_function_definition_string(
+    adapter, language
+):
     # Arrange
     definition = FunctionDefinition(
         name=IdentifierExpression(name="myFunction"),
         modifier=Modifier.PUBLIC,
         return_type=IdentifierExpression(name="void"),
-        parameters=[Parameter(type=IdentifierExpression(name="int"), name=IdentifierExpression(name="myParameter"))],
-        body=Body(statements=[ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))])
+        parameters=[
+            Parameter(
+                type=IdentifierExpression(name="int"),
+                name=IdentifierExpression(name="myParameter"),
+            )
+        ],
+        body=Body(
+            statements=[
+                ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))
+            ]
+        ),
     )
     generator = JavaCodeGenerator(adapter, definition)
 
@@ -600,17 +801,32 @@ def test_node_FunctionDefinition_name_modifier_return_type_parameter_body__retur
     code = generator.generate()
 
     # Assert
-    assert code == """public void myFunction(int myParameter) {\n    return myReturnValue;\n}"""
+    assert (
+        code
+        == """public void myFunction(int myParameter) {\n    return myReturnValue;\n}"""
+    )
 
-def test_node_FunctionDefinition_name_modifier_return_type_parameter_body_decorator__return_function_definition_string(adapter, language):
+
+def test_node_FunctionDefinition_name_modifier_return_type_parameter_body_decorator__return_function_definition_string(
+    adapter, language
+):
     # Arrange
     definition = FunctionDefinition(
         name=IdentifierExpression(name="myFunction"),
         modifier=Modifier.PUBLIC,
         return_type=IdentifierExpression(name="void"),
-        parameters=[Parameter(type=IdentifierExpression(name="int"), name=IdentifierExpression(name="myParameter"))],
-        body=Body(statements=[ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))]),
-        decorators=[Decorator(name=IdentifierExpression(name="myDecorator"))]
+        parameters=[
+            Parameter(
+                type=IdentifierExpression(name="int"),
+                name=IdentifierExpression(name="myParameter"),
+            )
+        ],
+        body=Body(
+            statements=[
+                ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))
+            ]
+        ),
+        decorators=[Decorator(name=IdentifierExpression(name="myDecorator"))],
     )
     generator = JavaCodeGenerator(adapter, definition)
 
@@ -618,7 +834,11 @@ def test_node_FunctionDefinition_name_modifier_return_type_parameter_body_decora
     code = generator.generate()
 
     # Assert
-    assert code == """@myDecorator\npublic void myFunction(int myParameter) {\n    return myReturnValue;\n}"""
+    assert (
+        code
+        == """@myDecorator\npublic void myFunction(int myParameter) {\n    return myReturnValue;\n}"""
+    )
+
 
 def test_node_ClassDefinition_no_name__raise_AttributeError(adapter, language):
     # Arrange
@@ -630,4 +850,431 @@ def test_node_ClassDefinition_no_name__raise_AttributeError(adapter, language):
         generator.generate()
 
     # Assert
-    assert str(e.value) == "Attribute 'name' is not defined but required for class 'ClassDefinition'"
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'ClassDefinition'"
+    )
+
+
+def test_node_ClassDefinition_no_modifier__raise_AttributeError(adapter, language):
+    # Arrange
+    definition = ClassDefinition(name=IdentifierExpression(name="MyClass"))
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    with pytest.raises(AttributeError) as e:
+        generator.generate()
+
+    # Assert
+    assert (
+        str(e.value)
+        == "Attribute 'modifier' is not defined but required for class 'ClassDefinition'"
+    )
+
+
+def test_node_ClassDefinition_name_modifier__return_class_definition_string(
+    adapter, language
+):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="MyClass"), modifier=Modifier.PUBLIC
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "public class MyClass {\n}"
+
+
+def test_node_ClassDefinition_name_modifier_extends__return_class_definition_string(
+    adapter, language
+):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="MyClass"),
+        modifier=Modifier.PUBLIC,
+        extends=IdentifierExpression(name="MyBaseClass"),
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "public class MyClass extends MyBaseClass {\n}"
+
+
+def test_node_ClassDefinition_name_modifier_extends_implements__return_class_definition_string(
+    adapter, language
+):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="MyClass"),
+        modifier=Modifier.PUBLIC,
+        extends=IdentifierExpression(name="MyBaseClass"),
+        implements=[
+            IdentifierExpression(name="MyInterface1"),
+            IdentifierExpression(name="MyInterface2"),
+        ],
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert (
+        code
+        == "public class MyClass extends MyBaseClass implements MyInterface1, MyInterface2 {\n}"
+    )
+
+
+def test_node_ClassDefinition_name_modifier_extends_implements_attributes__return_class_definition_string(
+    adapter, language
+):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="MyClass"),
+        modifier=Modifier.PUBLIC,
+        extends=IdentifierExpression(name="MyBaseClass"),
+        implements=[
+            IdentifierExpression(name="MyInterface1"),
+            IdentifierExpression(name="MyInterface2"),
+        ],
+        attributes=[
+            AttributeDefinition(
+                name=IdentifierExpression(name="myAttribute"),
+                modifier=Modifier.PUBLIC,
+                type=IdentifierExpression(name="String"),
+            ),
+            AttributeDefinition(
+                name=IdentifierExpression(name="myOtherAttribute"),
+                modifier=Modifier.PROTECTED,
+                type=IdentifierExpression(name="int"),
+            ),
+        ],
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert (
+        code
+        == """public class MyClass extends MyBaseClass implements MyInterface1, MyInterface2 {
+    public String myAttribute;
+    protected int myOtherAttribute;\n}"""
+    )
+
+
+def test_node_ClassDefinition_name_modifier_extends_implements_attributes_methods__return_class_definition_string(
+    adapter, language
+):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="MyClass"),
+        modifier=Modifier.PUBLIC,
+        extends=IdentifierExpression(name="MyBaseClass"),
+        implements=[
+            IdentifierExpression(name="MyInterface1"),
+            IdentifierExpression(name="MyInterface2"),
+        ],
+        attributes=[
+            AttributeDefinition(
+                name=IdentifierExpression(name="myAttribute"),
+                modifier=Modifier.PUBLIC,
+                type=IdentifierExpression(name="String"),
+            ),
+            AttributeDefinition(
+                name=IdentifierExpression(name="myOtherAttribute"),
+                modifier=Modifier.PROTECTED,
+                type=IdentifierExpression(name="int"),
+            ),
+        ],
+        methods=[
+            FunctionDefinition(
+                name=IdentifierExpression(name="myMethod"),
+                modifier=Modifier.PUBLIC,
+                return_type=IdentifierExpression(name="void"),
+                parameters=[
+                    Parameter(
+                        type=IdentifierExpression(name="int"),
+                        name=IdentifierExpression(name="myParameter"),
+                    )
+                ],
+                body=Body(
+                    statements=[
+                        ReturnStatement(
+                            expression=IdentifierExpression(name="myReturnValue")
+                        )
+                    ]
+                ),
+            ),
+            FunctionDefinition(
+                name=IdentifierExpression(name="myOtherMethod"),
+                modifier=Modifier.PROTECTED,
+                return_type=IdentifierExpression(name="String"),
+                parameters=[],
+                body=Body(
+                    statements=[
+                        ReturnStatement(expression=Literal(value='"Hello, World!"'))
+                    ]
+                ),
+            ),
+        ],
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert (
+        code
+        == """public class MyClass extends MyBaseClass implements MyInterface1, MyInterface2 {
+    public String myAttribute;
+    protected int myOtherAttribute;
+
+    public void myMethod(int myParameter) {
+        return myReturnValue;
+    }
+
+    protected String myOtherMethod() {
+        return "Hello, World!";
+    }\n}"""
+    )
+
+
+def test_large_class_definition(adapter, language):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="ComplexClass"),
+        modifier=Modifier.PUBLIC,
+        extends=IdentifierExpression(name="BaseClass"),
+        implements=[
+            IdentifierExpression(name="Interface1"),
+            IdentifierExpression(name="Interface2"),
+        ],
+        attributes=[
+            AttributeDefinition(
+                name=IdentifierExpression(name="attribute1"),
+                modifier=Modifier.PRIVATE,
+                type=IdentifierExpression(name="String"),
+            ),
+            AttributeDefinition(
+                name=IdentifierExpression(name="attribute2"),
+                modifier=Modifier.PROTECTED,
+                type=IdentifierExpression(name="int"),
+            ),
+        ],
+        methods=[
+            FunctionDefinition(
+                name=IdentifierExpression(name="method1"),
+                modifier=Modifier.PUBLIC,
+                return_type=IdentifierExpression(name="void"),
+                parameters=[
+                    Parameter(
+                        type=IdentifierExpression(name="int"),
+                        name=IdentifierExpression(name="param1"),
+                    )
+                ],
+                body=Body(
+                    statements=[
+                        ExpressionStatement(
+                            expression=IdentifierExpression(name="attribute2")
+                        ),
+                        ReturnStatement(expression=Literal(value="42")),
+                    ]
+                ),
+            ),
+            FunctionDefinition(
+                name=IdentifierExpression(name="method2"),
+                modifier=Modifier.PUBLIC,
+                return_type=IdentifierExpression(name="String"),
+                parameters=[],
+                decorators=[
+                    Decorator(name=IdentifierExpression(name="CustomAnnotation"))
+                ],
+                body=Body(
+                    statements=[ReturnStatement(expression=Literal(value='"Hello"'))]
+                ),
+            ),
+        ],
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    expected_code = """public class ComplexClass extends BaseClass implements Interface1, Interface2 {
+    private String attribute1;
+    protected int attribute2;
+
+    public void method1(int param1) {
+        attribute2;
+        return 42;
+    }
+
+    @CustomAnnotation
+    public String method2() {
+        return "Hello";
+    }
+}"""
+    assert code == expected_code
+
+
+def test_mega_class_definition(adapter, language):
+    # Arrange
+    definition = ClassDefinition(
+        name=IdentifierExpression(name="MegaClass"),
+        modifier=Modifier.PUBLIC,
+        extends=IdentifierExpression(name="SuperClass"),
+        implements=[
+            IdentifierExpression(name="InterfaceA"),
+            IdentifierExpression(name="InterfaceB"),
+            IdentifierExpression(name="InterfaceC"),
+        ],
+        attributes=[
+            AttributeDefinition(
+                name=IdentifierExpression(name="id"),
+                modifier=Modifier.PRIVATE,
+                type=IdentifierExpression(name="int"),
+                initializer=Literal(value="0"),
+            ),
+            AttributeDefinition(
+                name=IdentifierExpression(name="name"),
+                modifier=Modifier.PUBLIC,
+                type=IdentifierExpression(name="String"),
+            ),
+            AttributeDefinition(
+                name=IdentifierExpression(name="active"),
+                modifier=Modifier.PROTECTED,
+                type=IdentifierExpression(name="boolean"),
+                initializer=Literal(value="true"),
+            ),
+        ],
+        methods=[
+            # Méthode conditionnelle qui retourne le maximum de deux valeurs
+            FunctionDefinition(
+                name=IdentifierExpression(name="computeValue"),
+                modifier=Modifier.PUBLIC,
+                return_type=IdentifierExpression(name="int"),
+                parameters=[
+                    Parameter(
+                        type=IdentifierExpression(name="int"),
+                        name=IdentifierExpression(name="a"),
+                    ),
+                    Parameter(
+                        type=IdentifierExpression(name="int"),
+                        name=IdentifierExpression(name="b"),
+                    ),
+                ],
+                body=Body(
+                    statements=[
+                        IfStatement(
+                            condition=BinaryOperation(
+                                left=IdentifierExpression(name="a"),
+                                right=IdentifierExpression(name="b"),
+                                operator=BinaryOperator.GT,
+                            ),
+                            then=Body(
+                                statements=[
+                                    ReturnStatement(
+                                        expression=IdentifierExpression(name="a")
+                                    )
+                                ]
+                            ),
+                            _else=Body(
+                                statements=[
+                                    ReturnStatement(
+                                        expression=IdentifierExpression(name="b")
+                                    )
+                                ]
+                            ),
+                        )
+                    ]
+                ),
+            ),
+            # Méthode avec annotation qui met à jour le nom
+            FunctionDefinition(
+                name=IdentifierExpression(name="updateName"),
+                modifier=Modifier.PUBLIC,
+                return_type=IdentifierExpression(name="void"),
+                parameters=[
+                    Parameter(
+                        type=IdentifierExpression(name="String"),
+                        name=IdentifierExpression(name="newName"),
+                    )
+                ],
+                decorators=[
+                    Decorator(
+                        name=IdentifierExpression(name="Logger"),
+                        arguments=[Literal(value='"updateName called"')],
+                    )
+                ],
+                body=Body(
+                    statements=[
+                        ExpressionStatement(
+                            expression=BinaryOperation(
+                                left=IdentifierExpression(name="this.name"),
+                                right=IdentifierExpression(name="newName"),
+                                operator=BinaryOperator.EQ,
+                            )
+                        )
+                    ]
+                ),
+            ),
+            # Méthode qui inverse l'état d'un booléen et le retourne
+            FunctionDefinition(
+                name=IdentifierExpression(name="toggleActive"),
+                modifier=Modifier.PUBLIC,
+                return_type=IdentifierExpression(name="boolean"),
+                parameters=[],
+                body=Body(
+                    statements=[
+                        ExpressionStatement(
+                            expression=UnaryOperation(
+                                operand=IdentifierExpression(name="active"),
+                                operator=UnaryOperator.NOT,
+                            )
+                        ),
+                        ReturnStatement(expression=IdentifierExpression(name="active")),
+                    ]
+                ),
+            ),
+        ],
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    expected_code = """public class MegaClass extends SuperClass implements InterfaceA, InterfaceB, InterfaceC {
+    private int id = 0;
+    public String name;
+    protected boolean active = true;
+
+    public int computeValue(int a, int b) {
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+    @Logger("updateName called")
+    public void updateName(String newName) {
+        this.name = newName;
+    }
+
+    public boolean toggleActive() {
+        !active;
+        return active;
+    }
+}"""
+    assert code == expected_code

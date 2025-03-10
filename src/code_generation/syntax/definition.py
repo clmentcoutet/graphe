@@ -1,9 +1,6 @@
 from abc import ABCMeta
-from typing import Optional, List
 
-from src.code_generation.syntax.custom_type import Modifier
-from src.code_generation.syntax.syntax_tree import Node, Parameters, Body, Decorator
-from src.code_generation.syntax.expression import Expression
+from src.code_generation.syntax.syntax_tree import Node
 
 
 class Definition(Node, metaclass=ABCMeta):
@@ -46,26 +43,5 @@ class ClassDefinition(Definition):
         - attributes (Optional[AttributeDefinition]): attribute of the class
         - methods (Optional[List[FunctionDefinition]]): methods of the class
         - implements (Optional[List[IdentifierExpression]]): The class implements
-        - extend (Optional[IdentifierExpression]): The class extends
+        - extends (Optional[IdentifierExpression]): The class extends
     """
-
-    def __init__(
-        self,
-        name: "IdentifierExpression",
-        attributes: List[AttributeDefinition],
-        methods: List[FunctionDefinition],
-        *,
-        extend: Optional["IdentifierExpression"] = None,
-        implements: Optional[List["IdentifierExpression"]] = None,
-        modifiers: Optional[Modifier] = None,
-    ):
-        self.name = name
-        self.methods = methods
-        self.attributes = attributes
-        self.extend = extend
-        self.implements = implements
-        self.modifiers = modifiers
-
-    @property
-    def children(self):
-        return self.attributes + self.methods

@@ -98,9 +98,7 @@ def tree_two_functions():
 
 
 BinaryOperation(
-    left=IdentifierExpression(
-        "n"
-    ),
+    left=IdentifierExpression("n"),
     operator=BinaryOperator.SUB,
     right=Literal(1),
 )

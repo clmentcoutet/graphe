@@ -35,11 +35,12 @@ class BinaryOperator(Enum):
     GT = ">"
     LT = "<"
     POW = "**"
+    EQ = "="
 
 
 class UnaryOperator(Operator):
     NEG = "-"
-    NOT = "not"
+    NOT = "!"
 
 
 class Modifier(Enum):

@@ -24,6 +24,7 @@ from src.code_generation.syntax.syntax_tree import (
     Parameter,
     Body,
     Decorator,
+    Node,
 )
 from src.code_generation.tree.adapter.TreePort import TreePort
 
@@ -31,9 +32,8 @@ from src.code_generation.tree.adapter.TreePort import TreePort
 class JavaCodeGenerator(CodeGenerator):
     INDENT = "    "
 
-    def __init__(self, tree_adapter: TreePort, root: Module):
+    def __init__(self, tree_adapter: TreePort, root: Node):
         super().__init__(tree_adapter, root)
-        self.base_type = BaseType(JavaBaseType)
 
     def visit_module(self, node: Module, indent: int) -> str:
         classes = self.get_property(node, "classes", is_require=False)
@@ -64,7 +64,7 @@ class JavaCodeGenerator(CodeGenerator):
     def visit_decorator(self, node: Decorator, indent: int):
         name = self.get_property(node, "name")
         arguments = self.get_property(node, "arguments", is_require=False)
-        res = f"@{self.visit(name, indent)}"
+        res = f"{self.INDENT * indent}@{self.visit(name, indent)}"
         if arguments:
             arguments_str = ", ".join([self.visit(arg, indent) for arg in arguments])
             res += f"({arguments_str})"
@@ -88,7 +88,9 @@ class JavaCodeGenerator(CodeGenerator):
         left = self.get_property(node, "left")
         right = self.get_property(node, "right")
         operator = self.get_property(node, "operator")
-        return f"{self.visit(left, indent)} {operator.value} {self.visit(right, indent)}"
+        return (
+            f"{self.visit(left, indent)} {operator.value} {self.visit(right, indent)}"
+        )
 
     def visit_return_statement(self, node: ReturnStatement, indent: int):
         expression = self.get_property(node, "expression")
@@ -107,7 +109,7 @@ class JavaCodeGenerator(CodeGenerator):
         if else_branch:
             res += f"\n{self.get_indent_str(indent)}}} else {{\n"
             res += self.visit(else_branch, indent + 1)
-        res += f"{self.get_indent_str(indent)}\n}}"
+        res += f"\n{self.get_indent_str(indent)}}}"
         return res
 
     def visit_body(self, node: Body, indent: int):
@@ -119,9 +121,10 @@ class JavaCodeGenerator(CodeGenerator):
         modifier = self.get_property(node, "modifier")
         _type = self.get_property(node, "type")
         initializer = self.get_property(node, "initializer", is_require=False)
-        res = f"{modifier.value} {self.visit(_type, indent)} {self.visit(name, indent)}"
+        res = f"{self.INDENT * indent}{modifier.value} {self.visit(_type, indent)} {self.visit(name, indent)}"
         if initializer:
             res += f" = {self.visit(initializer, indent)}"
+        res += ";"
         return res
 
     def visit_function_def(self, node: FunctionDefinition, indent: int):
@@ -133,15 +136,43 @@ class JavaCodeGenerator(CodeGenerator):
         body = self.get_property(node, "body", is_require=False)
         res = ""
         if decorators:
-            decorators_str = ", ".join([self.visit(decorator, indent) for decorator in decorators])
+            decorators_str = ", ".join(
+                [self.visit(decorator, indent) for decorator in decorators]
+            )
             res += f"{decorators_str}\n"
-        res += f"{modifier.value} {self.visit(return_type, indent)} {self.visit(name, indent)}("
+        res += f"{self.INDENT * indent}{modifier.value} {self.visit(return_type, indent)} {self.visit(name, indent)}("
         if parameters:
-            parameters_str = ", ".join([self.visit(param, indent) for param in parameters])
+            parameters_str = ", ".join(
+                [self.visit(param, indent) for param in parameters]
+            )
             res += f"{parameters_str}"
         res += ") {"
         if body:
             res += "\n"
             res += self.visit(body, indent + 1)
+        res += f"\n{self.INDENT * indent}}}"
+        return res
+
+    def visit_class_def(self, node: ClassDefinition, indent: int):
+        name = self.get_property(node, "name")
+        modifier = self.get_property(node, "modifier")
+        extends = self.get_property(node, "extends", is_require=False)
+        implements = self.get_property(node, "implements", is_require=False)
+        attributes = self.get_property(node, "attributes", is_require=False)
+        methods = self.get_property(node, "methods", is_require=False)
+        res = f"{modifier.value} class {self.visit(name, indent)}"
+        if extends:
+            res += f" extends {self.visit(extends, indent)}"
+        if implements:
+            res += f" implements {', '.join([self.visit(impl, indent) for impl in implements])}"
+        res += " {"
+        if attributes:
+            res += "\n"
+            res += "\n".join(
+                [self.visit(attribute, indent + 1) for attribute in attributes]
+            )
+        if methods:
+            res += "\n\n"
+            res += "\n\n".join([self.visit(method, indent + 1) for method in methods])
         res += "\n}"
         return res

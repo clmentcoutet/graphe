@@ -30,7 +30,7 @@ class IfStatement(Statement):
 
 
 class ReturnStatement(Statement):
-    """"
+    """ "
     Represents a return statement in the code.
 
     Java attributes:

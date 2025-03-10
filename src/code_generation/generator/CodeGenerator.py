@@ -33,7 +33,7 @@ from src.code_generation.tree.adapter.TreePort import TreePort
 class CodeGenerator(ABC):
     INDENT = "    "
 
-    def __init__(self, tree_adapter: TreePort, root: Module):
+    def __init__(self, tree_adapter: TreePort, root: Node):
         self.tree_adapter = tree_adapter
         self.root = root
         self.base_type = None
@@ -68,7 +68,9 @@ class CodeGenerator(ABC):
         return self.visit(self.root, 0)
 
     def get_property(self, node: Node, property: str, default=None, is_require=True):
-        return self.tree_adapter.get_property(node, property, default=default, is_require=is_require)
+        return self.tree_adapter.get_property(
+            node, property, default=default, is_require=is_require
+        )
 
     def get_indent_str(self, indent: int):
         return self.INDENT * indent

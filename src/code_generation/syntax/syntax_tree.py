@@ -44,6 +44,7 @@ class Module(Node):
     Java attributes:
         - classes (Optional[List[ClassDefinition]]): The classes defined in the module.
     """
+
     def __init__(
         self,
         **kwargs,
