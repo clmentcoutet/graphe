@@ -25,6 +25,7 @@ class Node(ABC):
         "Decorator": NodeType.DECORATOR,
         "ClassDefinition": NodeType.CLASS_DEF,
         "AttributeDefinition": NodeType.ATTRIBUTE_DEF,
+        "CommentStatement": NodeType.COMMENT_STATEMENT,
     }
 
     def __init__(

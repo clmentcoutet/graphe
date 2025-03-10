@@ -21,6 +21,7 @@ class NodeType(Enum):
     DECORATOR = "Decorator"
     CLASS_DEF = "ClassDefinition"
     ATTRIBUTE_DEF = "AttributeDefinition"
+    COMMENT_STATEMENT = "CommentStatement"
 
 
 class Operator(Enum):

@@ -23,7 +23,7 @@ from src.code_generation.syntax.expression import (
 from src.code_generation.syntax.statement import (
     ReturnStatement,
     ExpressionStatement,
-    IfStatement,
+    IfStatement, CommentStatement,
 )
 from src.code_generation.syntax.syntax_tree import Parameter, Decorator, Body
 from src.code_generation.tree.adapter.ClassTreeAdapter import ClassTreeAdapter
@@ -1048,6 +1048,31 @@ def test_node_ClassDefinition_name_modifier_extends_implements_attributes_method
     )
 
 
+def test_node_Comment_no_comment__raise_AttributeError(adapter, language):
+    # Arrange
+    comment = CommentStatement()
+    generator = JavaCodeGenerator(adapter, comment)
+
+    # Act
+    with pytest.raises(AttributeError) as e:
+        generator.generate()
+
+    # Assert
+    assert str(e.value) == "Attribute 'comment' is not defined but required for class 'CommentStatement'"
+
+
+def test_node_Comment_comment__return_comment_string(adapter, language):
+    # Arrange
+    comment = CommentStatement(comment="This is a test comment")
+    generator = JavaCodeGenerator(adapter, comment)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "// This is a test comment"
+
+
 def test_large_class_definition(adapter, language):
     # Arrange
     definition = ClassDefinition(
@@ -1236,6 +1261,7 @@ def test_mega_class_definition(adapter, language):
                 parameters=[],
                 body=Body(
                     statements=[
+                        CommentStatement(comment="toggle active"),
                         ExpressionStatement(
                             expression=UnaryOperation(
                                 operand=IdentifierExpression(name="active"),
@@ -1273,6 +1299,7 @@ def test_mega_class_definition(adapter, language):
     }
 
     public boolean toggleActive() {
+        // toggle active
         !active;
         return active;
     }

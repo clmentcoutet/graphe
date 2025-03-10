@@ -16,7 +16,7 @@ from src.code_generation.syntax.expression import (
 from src.code_generation.syntax.statement import (
     ReturnStatement,
     IfStatement,
-    ExpressionStatement,
+    ExpressionStatement, CommentStatement,
 )
 from src.code_generation.syntax.syntax_tree import (
     Module,
@@ -64,7 +64,7 @@ class JavaCodeGenerator(CodeGenerator):
     def visit_decorator(self, node: Decorator, indent: int):
         name = self.get_property(node, "name")
         arguments = self.get_property(node, "arguments", is_require=False)
-        res = f"{self.INDENT * indent}@{self.visit(name, indent)}"
+        res = f"{self.get_indent_str(indent)}@{self.visit(name, indent)}"
         if arguments:
             arguments_str = ", ".join([self.visit(arg, indent) for arg in arguments])
             res += f"({arguments_str})"
@@ -121,7 +121,7 @@ class JavaCodeGenerator(CodeGenerator):
         modifier = self.get_property(node, "modifier")
         _type = self.get_property(node, "type")
         initializer = self.get_property(node, "initializer", is_require=False)
-        res = f"{self.INDENT * indent}{modifier.value} {self.visit(_type, indent)} {self.visit(name, indent)}"
+        res = f"{self.get_indent_str(indent)}{modifier.value} {self.visit(_type, indent)} {self.visit(name, indent)}"
         if initializer:
             res += f" = {self.visit(initializer, indent)}"
         res += ";"
@@ -140,7 +140,7 @@ class JavaCodeGenerator(CodeGenerator):
                 [self.visit(decorator, indent) for decorator in decorators]
             )
             res += f"{decorators_str}\n"
-        res += f"{self.INDENT * indent}{modifier.value} {self.visit(return_type, indent)} {self.visit(name, indent)}("
+        res += f"{self.get_indent_str(indent)}{modifier.value} {self.visit(return_type, indent)} {self.visit(name, indent)}("
         if parameters:
             parameters_str = ", ".join(
                 [self.visit(param, indent) for param in parameters]
@@ -150,7 +150,7 @@ class JavaCodeGenerator(CodeGenerator):
         if body:
             res += "\n"
             res += self.visit(body, indent + 1)
-        res += f"\n{self.INDENT * indent}}}"
+        res += f"\n{self.get_indent_str(indent)}}}"
         return res
 
     def visit_class_def(self, node: ClassDefinition, indent: int):
@@ -176,3 +176,7 @@ class JavaCodeGenerator(CodeGenerator):
             res += "\n\n".join([self.visit(method, indent + 1) for method in methods])
         res += "\n}"
         return res
+
+    def visit_comment_statement(self, node: CommentStatement, indent: int):
+        comment = self.get_property(node, "comment")
+        return f"{self.get_indent_str(indent)}// {comment}"

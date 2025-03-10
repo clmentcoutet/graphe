@@ -30,9 +30,18 @@ class IfStatement(Statement):
 
 
 class ReturnStatement(Statement):
-    """ "
+    """
     Represents a return statement in the code.
 
     Java attributes:
         - expression (Expression): The expression to be returned.
+    """
+
+
+class CommentStatement(Statement):
+    """
+    Represents a comment statement in the code.
+
+    Java attributes:
+        - comment (str): The comment text.
     """

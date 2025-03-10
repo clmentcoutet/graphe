@@ -17,7 +17,7 @@ from src.code_generation.syntax.expression import (
 from src.code_generation.syntax.statement import (
     ExpressionStatement,
     IfStatement,
-    ReturnStatement,
+    ReturnStatement, CommentStatement,
 )
 from src.code_generation.syntax.syntax_tree import (
     Node,
@@ -55,6 +55,7 @@ class CodeGenerator(ABC):
             NodeType.DECORATOR: self.visit_decorator,
             NodeType.CLASS_DEF: self.visit_class_def,
             NodeType.ATTRIBUTE_DEF: self.visit_attribute_def,
+            NodeType.COMMENT_STATEMENT: self.visit_comment_statement,
         }
 
     def visit(self, node: Node, indent):
@@ -121,4 +122,7 @@ class CodeGenerator(ABC):
         raise NotImplementedError
 
     def visit_call_expression(self, node: CallExpression, indent: int):
+        raise NotImplementedError
+
+    def visit_comment_statement(self, node: CommentStatement, indent: int):
         raise NotImplementedError
