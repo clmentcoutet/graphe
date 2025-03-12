@@ -26,6 +26,8 @@ class Node(ABC):
         "ClassDefinition": NodeType.CLASS_DEF,
         "AttributeDefinition": NodeType.ATTRIBUTE_DEF,
         "CommentStatement": NodeType.COMMENT_STATEMENT,
+        "FunctionTestDefinition": NodeType.FUNCTION_TEST_DEF,
+        "ClassTestDefinition": NodeType.CLASS_TEST_DEF,
     }
 
     def __init__(
@@ -34,8 +36,20 @@ class Node(ABC):
     ):
         self.kwargs = kwargs
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.kwargs == other.kwargs
+        return False
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.kwargs})"
+
     def get_type(self):
         return self.TYPE_MAPPING[self.__class__.__name__]
+
+    def add_kwargs(self, **kwargs):
+        self.kwargs.update(kwargs)
+
 
 
 class Module(Node):
@@ -46,12 +60,6 @@ class Module(Node):
         - classes (Optional[List[ClassDefinition]]): The classes defined in the module.
     """
 
-    def __init__(
-        self,
-        **kwargs,
-    ):
-        self.kwargs = kwargs
-
 
 class Parameter(Node):
     """
@@ -61,15 +69,6 @@ class Parameter(Node):
         - name (IdentifierExpression): The name of the parameter.
         - type (IdentifierExpression): The type of the parameter.
     """
-
-
-class Parameters(Node):
-    def __init__(self, parameters: List[Parameter]):
-        self.parameters = parameters
-
-    @property
-    def children(self):
-        return self.parameters
 
 
 class Body(Node):

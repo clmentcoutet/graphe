@@ -10,7 +10,7 @@ from src.code_generation.syntax.custom_type import (
 from src.code_generation.syntax.definition import (
     AttributeDefinition,
     FunctionDefinition,
-    ClassDefinition,
+    ClassDefinition, FunctionTestDefinition, ClassTestDefinition,
 )
 from src.code_generation.syntax.expression import (
     IdentifierExpression,
@@ -1072,6 +1072,139 @@ def test_node_Comment_comment__return_comment_string(adapter, language):
     # Assert
     assert code == "// This is a test comment"
 
+
+def test_node_FunctionTestDefinition_no_name__raise_AttributeError(adapter, language):
+    # Arrange
+    definition = FunctionTestDefinition()
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    with pytest.raises(AttributeError) as e:
+        generator.generate()
+
+    # Assert
+    assert (
+        str(e.value)
+        == "Attribute 'name' is not defined but required for class 'FunctionTestDefinition'"
+    )
+
+def test_node_FunctionTestDefinition_name_no_body_no_parameters__return_function_definition_string(adapter, language):
+    # Arrange
+    definition = FunctionTestDefinition(name=IdentifierExpression(name="myFunctionTest"))
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "@Test\npublic void myFunctionTest() {\n}"
+
+
+def test_node_FunctionTestDefinition_name_body_no_parameters__return_function_definition_string(adapter, language):
+    # Arrange
+    definition = FunctionTestDefinition(
+        name=IdentifierExpression(name="myFunctionTest"),
+        body=Body(
+            statements=[
+                ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))
+            ]
+        )
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "@Test\npublic void myFunctionTest() {\n    return myReturnValue;\n}"
+
+
+def test_node_FunctionTestDefinition_name_body_parameters__return_function_definition_string(adapter, language):
+    # Arrange
+    definition = FunctionTestDefinition(
+        name=IdentifierExpression(name="myFunctionTest"),
+        body=Body(
+            statements=[
+                ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))
+            ]
+        ),
+        parameters=[
+            Parameter(
+                type=IdentifierExpression(name="int"),
+                name=IdentifierExpression(name="param1"),
+            ),
+            Parameter(
+                type=IdentifierExpression(name="String"),
+                name=IdentifierExpression(name="param2"),
+            ),
+        ],
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert (
+        code
+        == "@Test\npublic void myFunctionTest(int param1, String param2) {\n    return myReturnValue;\n}"
+    )
+
+
+def test_node_ClassTestDefinition_no_name__raise_AttributeError(adapter, language):
+    # Arrange
+    definition = ClassTestDefinition()
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    with pytest.raises(AttributeError) as e:
+        generator.generate()
+
+    # Assert
+    assert str(e.value) == "Attribute 'name' is not defined but required for class 'ClassTestDefinition'"
+
+
+def test_node_ClassTestDefinition_name_no_method__return_class_definition_string(adapter, language):
+    # Arrange
+    definition = ClassTestDefinition(name=IdentifierExpression(name="MyClassTest"))
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert code == "public class MyClassTest {\n}"
+
+
+def test_node_ClassTestDefinition_name_method__return_class_definition_string(adapter, language):
+    # Arrange
+    definition = ClassTestDefinition(
+        name=IdentifierExpression(name="MyClassTest"),
+        methods=[
+            FunctionTestDefinition(
+                name=IdentifierExpression(name="myMethodTest"),
+                body=Body(
+                    statements=[
+                        ReturnStatement(expression=IdentifierExpression(name="myReturnValue"))
+                    ]
+                ),
+            )
+        ]
+    )
+    generator = JavaCodeGenerator(adapter, definition)
+
+    # Act
+    code = generator.generate()
+
+    # Assert
+    assert (
+        code
+        == """public class MyClassTest {\n
+    @Test
+    public void myMethodTest() {
+        return myReturnValue;
+    }\n}"""
+    )
 
 def test_large_class_definition(adapter, language):
     # Arrange

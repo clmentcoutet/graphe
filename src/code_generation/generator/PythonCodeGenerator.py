@@ -22,7 +22,6 @@ from src.code_generation.syntax.syntax_tree import (
     Node,
     Parameter,
     Module,
-    Parameters,
     Decorator,
 )
 from src.code_generation.tree.adapter.TreePort import TreePort

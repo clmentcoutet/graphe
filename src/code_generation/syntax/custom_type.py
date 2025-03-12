@@ -22,6 +22,8 @@ class NodeType(Enum):
     CLASS_DEF = "ClassDefinition"
     ATTRIBUTE_DEF = "AttributeDefinition"
     COMMENT_STATEMENT = "CommentStatement"
+    FUNCTION_TEST_DEF = "FunctionTestDefinition"
+    CLASS_TEST_DEF = "ClassTestDefinition"
 
 
 class Operator(Enum):

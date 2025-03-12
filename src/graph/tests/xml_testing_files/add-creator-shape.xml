@@ -1,0 +1,51 @@
+<mxlibrary>[
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;font color=&amp;quot;#ffffff&amp;quot;&amp;gt;CHANGE HERE&amp;lt;/font&amp;gt;\" tags=\"Flowchart\" id=\"2\"&gt;&lt;mxCell style=\"vsdxID=19673;fillColor=#2e75b5;gradientColor=none;shape=stencil(UzV2Ls5ILEhVNTIoLinKz04tz0wpyVA1dlE1MsrMy0gtyiwBslSNXVWNndPyi1LTi/JL81Ig/IJEkEoQKze/DGRCBUSfAUiHkUElhGcK4bpBVOZk5iGpNEVVikeloQHZpsK0YlWLz1QgA+HFtMycHEgIIcujBwlQCBKcxq4A);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"180\" height=\"108\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 180,
+    "h": 108,
+    "aspect": "fixed",
+    "title": "Condition"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;div style=&amp;quot;&amp;quot;&amp;gt;&amp;lt;font face=&amp;quot;Calibri&amp;quot;&amp;gt;&amp;lt;span style=&amp;quot;font-size: 11.29px;&amp;quot;&amp;gt;CHANGE HERE&amp;lt;/span&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/div&amp;gt;\" tags=\"Flowchart\" id=\"2\"&gt;&lt;mxCell style=\"verticalAlign=middle;align=center;overflow=width;vsdxID=19664;fillColor=#ff0000;gradientColor=none;shape=stencil(tVJBDsIgEHwNRxqEGO251n9sLG2JCM2Ctv5eEI2ttV6Mt9mZ2SXDLhGFa6GThDPn0R5lryrfErEjnCvTSlQ+ICJKIoraomzQnk2V6g6iM6KTvcQJQ+rbZDmPTZxdE7Fi7F7vk1srM3LnPGPbb3bAQ9BwNhwf9nVyL8976hQG5ShaD15ZM9E0YCNpeInWGpqJ5Hopuxn9Mcos+C85Fn/xL0ECeK2zVlqnaxjr7+sPVDodUd4A);strokeColor=#ff0000;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0.5,1,0],[0.5,0,0],[0.5,0.5,0],[1,0.5,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontColor=#FFFFFF;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"212\" height=\"33\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 212,
+    "h": 33,
+    "aspect": "fixed",
+    "title": "Error"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;div style=&amp;quot;&amp;quot;&amp;gt;&amp;lt;font style=&amp;quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&amp;quot;&amp;gt;&amp;lt;font style=&amp;quot;font-size: 11px;&amp;quot;&amp;gt;CHANGE HERE&amp;lt;/font&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/div&amp;gt;\" tags=\"Flowchart\" id=\"2\"&gt;&lt;mxCell style=\"verticalAlign=middle;align=center;overflow=width;vsdxID=19701;fillColor=#595959;gradientColor=none;shape=stencil(nZBLDoAgDERP0z3SIyjew0SURgSD+Lu9kMZoXLhwN9O+tukAlrNpJg1SzDH4QW/URgNYgZTkjA4UkwJUgGXng+6DX1zLfmoymdXo17xh5zmRJ6Q42BWCfc2oJfdAr+Yv+AP9Cb7OJ3H/2JG1HNGz/84klThPVCc=);strokeColor=#c8c8c8;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0,0.5,0],[1,0.5,0],[0.5,1,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"120\" height=\"60\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 60,
+    "aspect": "fixed",
+    "title": "BDD Action"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;div&amp;gt;&amp;lt;font style=&amp;quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&amp;quot;&amp;gt;CHANGE HERE&amp;lt;br&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/div&amp;gt;\" tags=\"Flowchart\" id=\"2\"&gt;&lt;mxCell style=\"verticalAlign=middle;align=center;overflow=width;vsdxID=19676;fillColor=#a8d08d;gradientColor=none;shape=stencil(nZBLDoAgDERP0z3SIyjew0SURgSD+Lu9kMZoXLhwN9O+tukAlrNpJg1SzDH4QW/URgNYgZTkjA4UkwJUgGXng+6DX1zLfmoymdXo17xh5zmRJ6Q42BWCfc2oJfdAr+Yv+AP9Cb7OJ3H/2JG1HNGz/84klThPVCc=);strokeColor=#c8c8c8;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0,0.5,0],[1,0.5,0],[0.5,1,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=11;fontColor=#ffffff;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"120\" height=\"60\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 60,
+    "aspect": "fixed",
+    "title": "External Action"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;div style=&amp;quot;&amp;quot;&amp;gt;&amp;lt;font style=&amp;quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&amp;quot;&amp;gt;&amp;lt;font style=&amp;quot;font-size: 11px;&amp;quot;&amp;gt;CHANGE HERE&amp;lt;/font&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/div&amp;gt;\" tags=\"Flowchart\" id=\"2\"&gt;&lt;mxCell style=\"verticalAlign=middle;align=center;overflow=width;vsdxID=19701;fillColor=#2E75B5;shape=stencil(nZBLDoAgDERP0z3SIyjew0SURgSD+Lu9kMZoXLhwN9O+tukAlrNpJg1SzDH4QW/URgNYgZTkjA4UkwJUgGXng+6DX1zLfmoymdXo17xh5zmRJ6Q42BWCfc2oJfdAr+Yv+AP9Cb7OJ3H/2JG1HNGz/84klThPVCc=);strokeColor=#006EAF;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0,0.5,0],[1,0.5,0],[0.5,1,0],[0.5,0,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;fontColor=#ffffff;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"120\" height=\"60\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 60,
+    "aspect": "fixed",
+    "title": "Internal Action"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;div&amp;gt;&amp;lt;font style=&amp;quot;font-family: Calibri; color: rgb(254, 255, 255); direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&amp;quot;&amp;gt;&amp;lt;font&amp;gt;CHANGE HERE&amp;lt;/font&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/div&amp;gt;\" tags=\"Flowchart\" id=\"2\"&gt;&lt;mxCell style=\"verticalAlign=middle;align=center;overflow=width;vsdxID=19661;fillColor=#44749f;gradientColor=none;shape=stencil(tVLLDsIgEPwajhgEn+da/2NjaUtEaBa09e8FqbHatBfjbXZndjcDQ0Tmamgk4cx5tGfZqsLXRBwI58rUEpUPiIiciKy0KCu0V1OkuoGojOhib3FDl+aW28V+Fac4u/cdxp71Mcm1MgP5ji/YZk4OeAocjrdjr18n+fTCF0+hU46i9eCVNR+cBqwkDadoqaHqTyXKtVI2g/aMl7H1n5xMv+RfvATw/tNSaZ0iMeS/MxBaKT8ifwA=);strokeColor=#41719c;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[0.5,1,0],[0.5,0,0],[0,0.5,0],[1,0.5,0]];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;fontFamily=Helvetica;fontSize=11;fontColor=#ffffff;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"120\" height=\"44\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 44,
+    "aspect": "fixed",
+    "title": "Start/End"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"CHANGE HERE\" style=\"shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry y=\"4.547473508864641e-13\" width=\"120\" height=\"80\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 80,
+    "aspect": "fixed",
+    "title": "Loop"
+  }
+]</mxlibrary>

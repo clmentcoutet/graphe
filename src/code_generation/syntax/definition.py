@@ -45,3 +45,22 @@ class ClassDefinition(Definition):
         - implements (Optional[List[IdentifierExpression]]): The class implements
         - extends (Optional[IdentifierExpression]): The class extends
     """
+
+class ClassTestDefinition(Definition):
+    """
+    Represents a class test definition
+
+    Common Attributes:
+        - name (IdentifierExpression): The class name
+        - methods (Optional[List[FunctionTestDefinition]]): methods of the class
+    """
+
+class FunctionTestDefinition(Definition):
+    """
+    Represents a function test definition
+
+    Common Attributes:
+        - name (IdentifierExpression): The function name
+        - body (Optional[Body]): The function body
+        - parameters (Optional[List[IdentifierExpression]]): The function parameters
+    """

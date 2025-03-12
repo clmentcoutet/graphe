@@ -25,7 +25,6 @@ from src.code_generation.syntax.syntax_tree import (
     Node,
     Parameter,
     Module,
-    Parameters,
     Decorator,
 )
 from src.code_generation.tree.adapter.TreePort import TreePort
@@ -90,12 +89,6 @@ class JavaScriptCodeGenerator(CodeGenerator):
         if return_type:
             res += f" : {self.visit(return_type, indent)}"
         return f"{res} {{\n{body}\n{self.INDENT * indent}}}"
-
-    def visit_parameters(self, node: Parameters, indent: int):
-        params = [
-            self.visit(child, indent) for child in self.tree_adapter.get_children(node)
-        ]
-        return ", ".join(params)
 
     def visit_binary_operation(self, node: BinaryOperation, indent: int):
         children = self.tree_adapter.get_children(node)

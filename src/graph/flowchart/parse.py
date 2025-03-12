@@ -33,7 +33,7 @@ def _parse_mxcell(cell):
 
 
 def parse_drawio(file_path: str | Path) -> nx.DiGraph:
-    if not file_path.endswith(".drawio"):
+    if not str(file_path).endswith(".drawio"):
         raise ValueError("Invalid file extension. Expected .drawio")
     # check if the file exists
     file_path = Path(file_path)
@@ -56,7 +56,7 @@ def parse_drawio(file_path: str | Path) -> nx.DiGraph:
         id, label, parent, source, target = _parse_mxcell(cell)
         if source and target:
             G.add_edge(source, target, label=label)
-        elif parent and id and id not in G.nodes:
+        elif parent and id:
             G.add_node(id, label=label)
     return _clean_graph(G)
 

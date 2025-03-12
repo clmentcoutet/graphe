@@ -4,7 +4,7 @@ from src.code_generation.syntax.custom_type import NodeType
 from src.code_generation.syntax.definition import (
     ClassDefinition,
     AttributeDefinition,
-    FunctionDefinition,
+    FunctionDefinition, FunctionTestDefinition, ClassTestDefinition,
 )
 from src.code_generation.syntax.expression import (
     BaseTypeExpression,
@@ -23,7 +23,6 @@ from src.code_generation.syntax.syntax_tree import (
     Node,
     Decorator,
     Module,
-    Parameters,
     Parameter,
     Body,
 )
@@ -56,6 +55,8 @@ class CodeGenerator(ABC):
             NodeType.CLASS_DEF: self.visit_class_def,
             NodeType.ATTRIBUTE_DEF: self.visit_attribute_def,
             NodeType.COMMENT_STATEMENT: self.visit_comment_statement,
+            NodeType.FUNCTION_TEST_DEF: self.visit_function_test_def,
+            NodeType.CLASS_TEST_DEF: self.visit_class_test_def,
         }
 
     def visit(self, node: Node, indent):
@@ -125,4 +126,10 @@ class CodeGenerator(ABC):
         raise NotImplementedError
 
     def visit_comment_statement(self, node: CommentStatement, indent: int):
+        raise NotImplementedError
+
+    def visit_function_test_def(self, node: FunctionTestDefinition, indent: int):
+        raise NotImplementedError
+
+    def visit_class_test_def(self, node: ClassTestDefinition, indent: int):
         raise NotImplementedError

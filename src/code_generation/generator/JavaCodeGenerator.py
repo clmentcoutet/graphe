@@ -1,9 +1,9 @@
 from src.code_generation.generator.CodeGenerator import CodeGenerator
-from src.code_generation.syntax.base_type import JavaBaseType, BaseType
+from src.code_generation.syntax.custom_type import Modifier
 from src.code_generation.syntax.definition import (
     ClassDefinition,
     AttributeDefinition,
-    FunctionDefinition,
+    FunctionDefinition, FunctionTestDefinition, ClassTestDefinition,
 )
 from src.code_generation.syntax.expression import (
     BaseTypeExpression,
@@ -20,7 +20,6 @@ from src.code_generation.syntax.statement import (
 )
 from src.code_generation.syntax.syntax_tree import (
     Module,
-    Parameters,
     Parameter,
     Body,
     Decorator,
@@ -180,3 +179,33 @@ class JavaCodeGenerator(CodeGenerator):
     def visit_comment_statement(self, node: CommentStatement, indent: int):
         comment = self.get_property(node, "comment")
         return f"{self.get_indent_str(indent)}// {comment}"
+
+    def _function_test_def_to_function_def_instance(self, function_test_def: FunctionTestDefinition):
+        name = self.get_property(function_test_def, "name")
+        body = self.get_property(function_test_def, "body", is_require=False)
+        parameters = self.get_property(function_test_def, "parameters", is_require=False)
+        return FunctionDefinition(
+            name=name,
+            modifier=Modifier.PUBLIC,
+            return_type=IdentifierExpression(name="void"),
+            decorators=[Decorator(name=IdentifierExpression(name="Test"))],
+            body=body,
+            parameters=parameters,
+        )
+
+    def visit_function_test_def(self, node: FunctionTestDefinition, indent: int):
+        function_def_instance = self._function_test_def_to_function_def_instance(node)
+        return self.visit(function_def_instance, indent)
+
+    def visit_class_test_def(self, node: ClassTestDefinition, indent: int):
+        name = self.get_property(node, "name")
+        methods = self.get_property(node, "methods", is_require=False)
+        class_definition_instance = ClassDefinition(
+            name=name,
+            modifier=Modifier.PUBLIC,
+        )
+        if methods:
+            class_definition_instance.add_kwargs(
+                methods=[self._function_test_def_to_function_def_instance(method) for method in methods]
+            )
+        return self.visit(class_definition_instance, indent)
